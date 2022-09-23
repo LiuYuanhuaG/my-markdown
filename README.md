@@ -11,9 +11,9 @@ English | [简体中文](/README.zh-CN.md)
 
 ## ✨Tour the hospital?
 
-​ [点一下就行了,蠢货！ ----_Mordekaiser_](http://liuyuanhua.site/my-markdown/)
+[点一下就行了,蠢货！ ----_Mordekaiser_](http://liuyuanhua.site/my-markdown/)
 
-​ tip: Tribute to League of Legends
+tip: Tribute to League of Legends
 
 ## 📒 Our hospital hires [dumi](https://d.umijs.org/zh-CN/guide) for building materials
 
@@ -39,5 +39,30 @@ tip: You can find out by yourself [go](https://d.umijs.org/zh-CN/guide)
 <div>
   <img data-type="dingtalk" src="https://gw.alipayobjects.com/zos/bmw-prod/ce3439e7-3bf9-4031-b823-6473439ec9e6/kxkiis4c_w1004_h1346.jpeg" width="300" />
   <img data-type="wechat" src="https://gw.alipayobjects.com/zos/bmw-prod/c18bc2a5-719a-48ca-b225-c79ef88bfb43/k7m10ymd_w1004_h1346.jpeg" width="300" />
-      <img data-type="wechat" src="./img/my_wx.jpg" width="300" />
 </div>
+
+## 联系作者
+
+```html
+<div>
+  <img
+    data-type="wechat"
+    title="个人微信"
+    src="https://raw.githubusercontent.com/LiuYuanhuaG/my-markdown/408bae1293ed0bb71074937ba1695a613f2e2a11/public/img/my_wx.jpg"
+    width="300"
+  />
+</div>
+```
+
+## 给作者投食
+
+```html
+<div>
+  <img
+    data-type="wechat"
+    title="个人微信"
+    src="https://raw.githubusercontent.com/LiuYuanhuaG/my-markdown/408bae1293ed0bb71074937ba1695a613f2e2a11/public/img/toushi.jpg"
+    width="300"
+  />
+</div>
+```
