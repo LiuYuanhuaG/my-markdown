@@ -4,13 +4,13 @@
 set -e
 
 # 删除旧的文件
-rm -rf dist
+rm -rf docs-dist
 
 # 生成新的压缩文件
-yarn build
+npm run docs:build
 
 # 进入生成的文件夹
-cd dist
+cd docs-dist
 
 # 复制一个 index.html并命名为 404.html 解决 historyAPI 404问题
 cp index.html 404.html

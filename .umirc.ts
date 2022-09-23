@@ -44,7 +44,7 @@ export default defineConfig({
       charset: 'utf-8',
     },
     {
-      src: '/show.js',
+      src: `${process.env.NODE_ENV == 'development' ? '' : `/${repo}`}/show.js`,
     },
     // { content: 'import "./show.js"', charset: 'utf-8' },
   ],

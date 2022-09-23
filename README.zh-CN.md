@@ -1,33 +1,23 @@
-# 🌟 Dumi Template
+# 🌟 欢迎来到前端病情院
 
-为组件开发场景而生的文档模板
+此站为小白萌新的文档网站
 
 [English](./README.md) | 简体中文
 
-## 🚀 如何使用？
+## 🚀 这里有什么?
 
-![](https://gw.alipayobjects.com/zos/bmw-prod/91791904-cdde-4408-959d-72fd0c9049b1/kj80x6lv_w1918_h352.png)
+- [前端病情进度](/docs/guide)
+- [病情控制药物材料](components/)
 
-## ✨ 在线预览
+## ✨ 游览病院？
 
-https://umijs.github.io/dumi-template/
+​ [点一下就行了,蠢货！ ----莫的感情](http://liuyuanhua.site/my-markdown/)
 
-## 📒 目录介绍
+​ tip: 致敬联盟
 
-```
-├── docs                   文档存放路径
-│   ├── index.md           首页展示
-│   └── **.**              网站目录文档
-├── src                    组件主目录
-│   ├── index.ts           组件注册
-│   └── Foo                组件开发
-├── .eslintrc.js           eslint 配置
-├── .fatherrc.ts           father 配置
-├── .umirc.ts              dumi 配置
-└── tsconfig.json          typescript 配置
-```
+## 📒 本院聘请[dumi](https://d.umijs.org/zh-CN/guide)建筑供材
 
-其余文件可自行查阅了解。
+tip: 可自行前往了解 [go](https://d.umijs.org/zh-CN/guide)
 
 ## 🤖 命令介绍
 
@@ -42,10 +32,12 @@ https://umijs.github.io/dumi-template/
 | `npm run docs:build`    | 文档打包       | -                                                                    |
 | `npm run docs:deploy`   | 文档发布       | 这里默认是使用了 GitHub Pages                                        |
 | `npm run deploy`        | 文档打包发布   | -                                                                    |
+| `npm run deploys`       | 文档打包发布   | deploy.sh 文件中手动配置相关命令                                     |
 
 ## 交流群
 
 <div>
   <img data-type="dingtalk" src="https://gw.alipayobjects.com/zos/bmw-prod/ce3439e7-3bf9-4031-b823-6473439ec9e6/kxkiis4c_w1004_h1346.jpeg" width="300" />
   <img data-type="wechat" src="https://gw.alipayobjects.com/zos/bmw-prod/c18bc2a5-719a-48ca-b225-c79ef88bfb43/k7m10ymd_w1004_h1346.jpeg" width="300" />
+  <img data-type="wechat" src="./img/my_wx.jpg" width="300" />
 </div>
