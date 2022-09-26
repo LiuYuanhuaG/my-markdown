@@ -22,7 +22,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/umijs/dumi-template",
+    "url": "https://github.com/LiuYuanhuaG/my-markdown",
     "branch": "main"
   },
   "lint-staged": {
@@ -35,6 +35,8 @@
   },
   "dependencies": {
     "antd": "^4.23.2",
+    "leaflet": "^1.9.1",
+    "mapbox-gl": "^2.10.0",
     "react": "^16.12.0"
   },
   "devDependencies": {

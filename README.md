@@ -2,7 +2,7 @@
 
 This is a new documentation site
 
-English | [简体中文](/README.zh-CN.md)
+English | [简体中文](zh-CN)
 
 ## 🚀 What's in here?
 
@@ -41,9 +41,10 @@ tip: You can find out by yourself [go](https://d.umijs.org/zh-CN/guide)
   <img data-type="wechat" src="https://gw.alipayobjects.com/zos/bmw-prod/c18bc2a5-719a-48ca-b225-c79ef88bfb43/k7m10ymd_w1004_h1346.jpeg" width="300" />
 </div>
 
-## 联系作者
+##
 
-```html
+## 联系院长
+
 <div>
   <img
     data-type="wechat"
@@ -52,17 +53,16 @@ tip: You can find out by yourself [go](https://d.umijs.org/zh-CN/guide)
     width="300"
   />
 </div>
-```
 
-## 给作者投食
+## 给院长投食
 
-```html
 <div>
   <img
     data-type="wechat"
     title="个人微信"
-    src="https://raw.githubusercontent.com/LiuYuanhuaG/my-markdown/408bae1293ed0bb71074937ba1695a613f2e2a11/public/img/toushi.jpg"
+    src="https://raw.iqiq.io/LiuYuanhuaG/my-markdown/5f657624af9914f2368a2056dff73934a9c01137/public/img/toushi.jpg"
     width="300"
   />
 </div>
-```
+
+##
