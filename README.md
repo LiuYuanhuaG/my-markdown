@@ -6,7 +6,7 @@ English | [简体中文](zh-CN)
 
 ## 🚀 What's in here?
 
-- [web Front-end disease progress](/docs/guide)
+- [web Front-end disease progress](/guide)
 - [Disease Control Drug Materials](components/)
 
 ## ✨Tour the hospital?

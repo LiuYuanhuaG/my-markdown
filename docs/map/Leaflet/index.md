@@ -21,7 +21,7 @@ yarn add leaflet
 
 然后我们需要在 demo 中引入 leaflet 及其样式
 
-```react
+```tsx | pure
 import L from 'leaflet';
 // 引入leaflet样式文件
 import 'leaflet/dist/leaflet.css';
@@ -34,9 +34,9 @@ const demos = () => {
       minZoom: 3, // 最小缩放层级 不设置默认为0
       // crs: L.CRS.EPSG4326, // 使用标准
     });
- //    map.on('zoom', e => { //监听地图缩放层级
- //     console.log(e.target._zoom, 'zoom');
- //   });
+    //    map.on('zoom', e => { //监听地图缩放层级
+    //     console.log(e.target._zoom, 'zoom');
+    //   });
   }, []);
   return (
     <div id="map" style={{ position: 'relative', height: '600px ' }}></div>
@@ -50,24 +50,23 @@ export default demos;
 
 这里可以为其添加底图，我们选择不同图源 比如[天地图](http://lbs.tianditu.gov.cn/server/MapService.html)、[mapbox](https://docs.mapbox.com/api/maps/vector-tiles/)、高德等（总览中有提到在线服务），这里我选择使用天地图的图源
 
-```react
-    // 我们一起添加一个 标注地图
-	let key = '3c1fa5502bab6c274c3557cea72eb9f1' // 此项是在天地图官网申请的key
-    let baseMap = L.tileLayer(
-      'http://{s}.tianditu.gov.cn/DataServer?T=cta_w&x={x}&y={y}&l={z}&tk=' +
-        key,
-      {
-        maxZoom: 20,
-        tileSize: 256, // 每片栅格的大小
-        zIndex: 1, // 图层排列顺序
-        // zoomOffset: 1,
-        subdomains: ['t0', 't1', 't2', 't3', 't4', 't5', 't6', 't7'], // 此项不可少 因访问量可能较大 避免多次访问同一节点天地图可能会屏蔽ip
-          //  {s} 会自动随机获取 https://leafletjs.com/reference.html#tilelayer 查看详情
-      },
-    );
-	baseMap.addTo(map)
+```tsx | pure
+// 我们一起添加一个 标注地图
+let key = '3c1fa5502bab6c274c3557cea72eb9f1'; // 此项是在天地图官网申请的key
+let baseMap = L.tileLayer(
+  'http://{s}.tianditu.gov.cn/DataServer?T=cta_w&x={x}&y={y}&l={z}&tk=' + key,
+  {
+    maxZoom: 20,
+    tileSize: 256, // 每片栅格的大小
+    zIndex: 1, // 图层排列顺序
+    // zoomOffset: 1,
+    subdomains: ['t0', 't1', 't2', 't3', 't4', 't5', 't6', 't7'], // 此项不可少 因访问量可能较大 避免多次访问同一节点天地图可能会屏蔽ip
+    //  {s} 会自动随机获取 https://leafletjs.com/reference.html#tilelayer 查看详情
+  },
+);
+baseMap.addTo(map);
 ```
 
 此时运行代码地图中就出现了 标注。 我们还可以此添加影像和道路图、矢量等 具体示例如下
 
-`<code src="./demo.tsx"></code>`
+<code src="./demo.tsx"></code>

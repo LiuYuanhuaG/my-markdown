@@ -12,6 +12,7 @@ export default defineConfig({
   dynamicImport: {
     loading: '@/Loading',
   },
+
   // Because of using GitHub Pages
   base: `/${repo}/`,
   publicPath: `/${repo}/`,
@@ -48,6 +49,10 @@ export default defineConfig({
     },
     // { content: 'import "./show.js"', charset: 'utf-8' },
   ],
+  links: [
+    { rel: 'stylesheet', type: 'text/css', href: `/${repo}/css/global.less` },
+    // { rel: 'stylesheet', type: 'text/css', href: `/${repo}/css/global.less` },
+  ],
   styles: [
     `.snow-container {
     position: fixed;
@@ -57,7 +62,7 @@ export default defineConfig({
     height: 100vh;
     background-color: rgba(0, 0, 0, 0.02);
     pointer-events: none;
-    z-index: 100001;
+    z-index: 100;
   }`,
   ],
   // more config: https://d.umijs.org/config

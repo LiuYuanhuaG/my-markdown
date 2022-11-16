@@ -34,12 +34,15 @@
     ]
   },
   "dependencies": {
-    "antd": "^4.23.2",
+    "@ant-design/icons": "^4.7.0",
+    "antd": "^4.24.2",
     "leaflet": "^1.9.1",
-    "mapbox-gl": "^2.10.0",
+    "lodash": "^4.17.21",
+    "mapbox-gl": "^2.11.0",
     "react": "^16.12.0"
   },
   "devDependencies": {
+    "@types/lodash": "^4.14.189",
     "@umijs/test": "^3.0.5",
     "dumi": "^1.1.0",
     "father-build": "^1.19.1",
