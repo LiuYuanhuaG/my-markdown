@@ -1,151 +1,135 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { Tag } from 'antd';
-import _ from 'lodash';
+
+type IDragEvent = React.DragEvent<HTMLDivElement>;
+
+type IHandleCheckIsTargetEqualHandle = {
+  (currentTarget: HTMLDivElement | null, target: HTMLDivElement): boolean;
+};
+
+interface IDataList {
+  color: string;
+  draggable: boolean;
+  key: number;
+  closable?: boolean;
+}
+
+const _checkIsTargetEqual: IHandleCheckIsTargetEqualHandle = (
+  currentTarget,
+  target,
+) => currentTarget === target;
+
+const renderTag = (data: IDataList[]) => {
+  const TagsNode = data.map(item => (
+    <Tag
+      {...item}
+      key={item.key}
+      data-key={item.key}
+      className="tag_item"
+      color={item.color}
+    >
+      {item.color}
+    </Tag>
+  ));
+  return TagsNode;
+};
+
+const DATA_LIST_DICT = [
+  {
+    color: 'magenta',
+    draggable: true,
+    key: 0,
+  },
+  {
+    color: 'red',
+    draggable: true,
+    key: 1,
+  },
+  {
+    color: 'volcano',
+    draggable: true,
+    key: 2,
+  },
+  {
+    color: 'gold',
+    draggable: true,
+    key: 3,
+  },
+  {
+    color: 'lime',
+    draggable: true,
+    key: 4,
+  },
+  {
+    color: 'green',
+    draggable: true,
+    key: 5,
+  },
+  {
+    color: 'cyan',
+    draggable: true,
+    key: 6,
+  },
+  {
+    color: 'blue',
+    draggable: true,
+    key: 7,
+  },
+  {
+    color: 'geekblue',
+    draggable: true,
+    key: 8,
+  },
+  {
+    color: 'purple',
+    draggable: true,
+    closable: true,
+    key: 9,
+  },
+];
 
 const test = () => {
-  let BaseList: any; // 用于储存tag数据
-  const tagBox = useRef<HTMLDivElement | null>(null);
-  const startTag = useRef<HTMLDivElement | EventTarget | null>(null!);
-  const endTag = useRef<HTMLDivElement | EventTarget | null>(null!);
-  // 用于视图更新
-  const [dataList, setDataList] = useState<
-    {
-      color: string;
-      draggable: boolean;
-      key: string | number;
-      closable?: boolean;
-    }[]
-  >([
-    {
-      color: 'magenta',
-      draggable: true,
-      key: 0,
-    },
-    {
-      color: 'red',
-      draggable: true,
-      key: 1,
-    },
-    {
-      color: 'volcano',
-      draggable: true,
-      key: 2,
-    },
-    {
-      color: 'gold',
-      draggable: true,
-      key: 3,
-    },
-    {
-      color: 'lime',
-      draggable: true,
-      key: 4,
-    },
-    {
-      color: 'green',
-      draggable: true,
-      key: 5,
-    },
-    {
-      color: 'cyan',
-      draggable: true,
-      key: 6,
-    },
-    {
-      color: 'blue',
-      draggable: true,
-      key: 7,
-    },
-    {
-      color: 'geekblue',
-      draggable: true,
-      key: 8,
-    },
-    {
-      color: 'purple',
-      draggable: true,
-      closable: true,
-      key: 9,
-    },
-  ]);
+  const tagBox = useRef<HTMLDivElement>(null);
+  const [startTag, setStartTag] = useState<HTMLDivElement | null>(null!);
+  const [endTag, setEndTag] = useState<HTMLDivElement | null>(null!);
+  const [dataList, setDataList] = useState<IDataList[]>(DATA_LIST_DICT);
 
-  useEffect(() => {
-    tagBox.current?.addEventListener(
-      'dragstart',
-      e => {
-        // e.preventDefault();
-        // 元素开始拖动触发
-        startTag.current = e.target;
-      },
-      false,
-    );
+  const handleDragstart = (e: IDragEvent) =>
+    e.target && setStartTag(e.target as HTMLDivElement);
 
-    tagBox.current?.addEventListener(
-      'dragover',
-      e => {
-        e.preventDefault();
-        if (tagBox.current !== e.target) {
-          if (startTag.current !== e.target) {
-            endTag.current = e.target;
-          }
-        } else {
-          endTag.current = null;
-        }
-      },
-      false,
-    );
+  const handleDragover = (e: IDragEvent) => {
+    e.preventDefault();
+    const target = e.target as HTMLDivElement;
 
-    tagBox.current?.addEventListener(
-      'dragend',
-      (e: any) => {
-        // 拖动结束触发
-        e.preventDefault();
-        if (endTag.current) {
-          let list = _.cloneDeep(BaseList ? BaseList : dataList);
-          // 拿到开始结束位置的key
-          const endKey = endTag.current?.getAttribute('data-key');
-          const startKey = startTag.current?.getAttribute('data-key');
-          let endi, starti, endData, startData;
-          // 获取对应key的索引和值
-          list.forEach((item: any, i: any) => {
-            if (item.key == endKey) {
-              endi = i;
-              endData = item;
-            }
-            if (item.key == startKey) {
-              starti = i;
-              startData = item;
-            }
-          });
-          // 开始结束位置交换
-          endi !== undefined && (list[endi] = startData);
-          starti !== undefined && (list[starti] = endData);
+    if (_checkIsTargetEqual(tagBox.current, target)) return setEndTag(null!);
 
-          BaseList = list;
-          setDataList(list);
-          endTag.current = null;
-        }
-      },
-      false,
-    );
-  }, []);
+    if (!_checkIsTargetEqual(endTag, target)) return setEndTag(target);
+  };
+
+  const handleDragend = (e: IDragEvent) => {
+    e.preventDefault();
+    if (!endTag) return false;
+
+    let list = [...dataList];
+    const endKey = (endTag?.getAttribute('data-key') as any) as number;
+    const startKey = (startTag?.getAttribute('data-key') as any) as number;
+    // 交换位置
+    [list[startKey], list[endKey]] = [list[endKey], list[startKey]];
+
+    setDataList([...list]);
+  };
+
+  const EventsBus = {
+    onDragStart: handleDragstart,
+    onDragOver: handleDragover,
+    onDragEnd: handleDragend,
+  };
 
   return (
-    <>
-      <div className="tag_box" ref={tagBox}>
-        {dataList.map(({ color, key, ...surplus }, _i) => (
-          <Tag
-            {...surplus}
-            color={color}
-            key={_i}
-            className="tag_item"
-            data-key={key}
-          >
-            {color}
-          </Tag>
-        ))}
-      </div>
-    </>
+    <div ref={tagBox} {...EventsBus}>
+      {renderTag(dataList)}
+    </div>
   );
 };
+
 export default test;

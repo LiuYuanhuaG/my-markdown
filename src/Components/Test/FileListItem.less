@@ -1,0 +1,25 @@
+.up_list {
+  flex: auto;
+  padding-left: 0.520833vw;
+  border: 1px solid #c8c8c8;
+  border-radius: 0.3125vw;
+  margin-right: 0.520833vw;
+  max-height: 6.25vw;
+  height: 6.25vw;
+  overflow: auto;
+  max-width: 100%;
+  position: relative;
+  display: block;
+  :global {
+    .up_list_item {
+      line-height: 2.239583vw;
+    }
+    .up_list_item_scroll {
+      position: absolute;
+      left: 0;
+      top: 0;
+      right: 0;
+      z-index: -1;
+    }
+  }
+}
