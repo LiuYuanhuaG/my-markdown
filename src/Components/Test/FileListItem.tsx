@@ -62,7 +62,7 @@ Props) => {
   };
 
   const onLoad = e => {
-    console.log(e, 'boxOnLoad');
+    console.log(e, 'boxOnLoad'); // 没有这个事件
   };
 
   useEffect(() => {
@@ -73,7 +73,7 @@ Props) => {
   }, [list]);
 
   return (
-    <div
+    <span
       className={classs.up_list}
       ref={upListEl}
       onScroll={onScroll}
@@ -88,7 +88,7 @@ Props) => {
           <div className="up_list_item">{item.name}</div>
         ))}
       </div>
-    </div>
+    </span>
   );
 };
 
