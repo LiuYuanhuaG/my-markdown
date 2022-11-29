@@ -1,5 +1,5 @@
-import React, { useRef, useState } from 'react';
 import { Tag } from 'antd';
+import React, { useRef, useState } from 'react';
 
 type IDragEvent = React.DragEvent<HTMLDivElement>;
 
@@ -20,7 +20,7 @@ const _checkIsTargetEqual: IHandleCheckIsTargetEqualHandle = (
 ) => currentTarget === target;
 
 const renderTag = (data: IDataList[]) => {
-  const TagsNode = data.map(item => (
+  const TagsNode = data.map((item) => (
     <Tag
       {...item}
       key={item.key}
@@ -88,7 +88,7 @@ const DATA_LIST_DICT = [
   },
 ];
 
-const test = () => {
+const Test = () => {
   const tagBox = useRef<HTMLDivElement>(null);
   const [startTag, setStartTag] = useState<HTMLDivElement | null>(null!);
   const [endTag, setEndTag] = useState<HTMLDivElement | null>(null!);
@@ -111,8 +111,8 @@ const test = () => {
     if (!endTag) return false;
 
     let list = [...dataList];
-    const endKey = (endTag?.getAttribute('data-key') as any) as number;
-    const startKey = (startTag?.getAttribute('data-key') as any) as number;
+    const endKey = endTag?.getAttribute('data-key') as any as number;
+    const startKey = startTag?.getAttribute('data-key') as any as number;
     // 交换位置
     [list[startKey], list[endKey]] = [list[endKey], list[startKey]];
 
@@ -132,4 +132,4 @@ const test = () => {
   );
 };
 
-export default test;
+export default Test;

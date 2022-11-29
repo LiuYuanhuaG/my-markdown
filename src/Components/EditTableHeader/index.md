@@ -1,9 +1,5 @@
 ---
-nav:
-  title: Components
-  path: /components
-group:
-  path: /EditTableHeader
+title: 可移动tag
 ---
 
 # EditTableHeader

@@ -1,9 +1,8 @@
 import styless from './AutoScrollList.less';
 
-import { useEffect, useMemo, useRef, useState } from 'react';
-import React from 'react';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
 
-interface AutoScrollList {
+interface AutoScrollListType {
   fileList: any[];
   // isProgress?: boolean;
   // baseItemSize?: number | string;
@@ -17,14 +16,12 @@ interface AutoScrollList {
  * @itemRender 元素渲染
  * @multiple  为列表元素高度的倍数 用于计算当前列表盒子高度
  */
-const AutoScrollList = (props: AutoScrollList) => {
+const AutoScrollList = (props: AutoScrollListType) => {
   const {
     fileList,
     itemRender,
-    // isProgress = true,
-    // baseItemSize = 50,
+
     multiple = 3,
-    children,
   } = props;
 
   const upListEl = useRef<HTMLDivElement>(null);
@@ -61,7 +58,7 @@ const AutoScrollList = (props: AutoScrollList) => {
     return `translate3d(0,${_startOffset}px,0)`;
   }, [_startOffset]);
 
-  const onScroll = (e: any) => {
+  const onScroll = () => {
     // 当前滚动位置
     const scrollTop = upListEl.current?.scrollTop ?? _startOffset;
     const clientHeight = upListEl.current?.clientHeight ?? 0;
@@ -104,7 +101,7 @@ const AutoScrollList = (props: AutoScrollList) => {
       ></div>
       <div style={{ transform: getTransform }} className="list_item_content">
         {list.map((item, i) => (
-          <div ref={i == 0 ? itemRef : null} key={i + Math.random()}>
+          <div ref={i === 0 ? itemRef : null} key={i + Math.random()}>
             {itemRender(item)}
           </div>
         ))}

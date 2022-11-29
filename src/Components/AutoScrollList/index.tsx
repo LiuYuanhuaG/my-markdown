@@ -1,6 +1,5 @@
 import React from 'react';
-import classs from './index.less';
-import AutoScrollList from '@/Components/AutoScrollList/AutoScrollList';
+import AutoScrollList from './AutoScrollList';
 const Index = () => {
   return (
     <div>

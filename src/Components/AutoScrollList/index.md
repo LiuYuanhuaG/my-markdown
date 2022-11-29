@@ -1,8 +1,7 @@
 ---
 nav:
-  path: /components
-group:
-  path: /AutoScrollList
+  title: Components
+title: 长列表
 ---
 
 # AutoScrollList

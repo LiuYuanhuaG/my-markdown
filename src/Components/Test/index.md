@@ -1,8 +1,5 @@
 ---
-nav:
-  path: /components
-group:
-  path: /Test
+title: 自定义文件上传列表
 ---
 
 # Test

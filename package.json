@@ -1,54 +1,77 @@
 {
-  "private": true,
-  "name": "dumi-template",
-  "version": "1.0.0",
+  "name": "markdown",
+  "version": "0.0.1",
+  "description": "",
+  "license": "MIT",
+  "module": "dist/index.js",
+  "types": "dist/types.d.ts",
+  "files": [
+    "dist"
+  ],
   "scripts": {
-    "start": "dumi dev",
+    "build": "father build",
+    "build:watch": "father dev",
+    "dev": "dumi dev",
     "docs:build": "dumi build",
-    "docs:deploy": "gh-pages -d docs-dist",
-    "build": "father-build",
-    "deploy": "npm run docs:build && npm run docs:deploy",
-    "deploys": "deploy.sh",
-    "release": "npm run build && npm publish",
-    "prettier": "prettier --write \"**/*.{js,jsx,tsx,ts,less,md,json}\"",
-    "test": "umi-test",
-    "test:coverage": "umi-test --coverage"
+    "doctor": "father doctor",
+    "lint": "npm run lint:es && npm run lint:css",
+    "lint:css": "stylelint \"{src,test}/**/*.{css,less}\"",
+    "lint:es": "eslint \"{src,test}/**/*.{js,jsx,ts,tsx}\"",
+    "prepare": "husky install && dumi setup",
+    "prepublishOnly": "father doctor && npm run build",
+    "start": "npm run dev"
   },
-  "main": "dist/index.js",
-  "module": "dist/index.esm.js",
-  "typings": "dist/index.d.ts",
-  "gitHooks": {
-    "pre-commit": "lint-staged"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/LiuYuanhuaG/my-markdown",
-    "branch": "main"
+  "commitlint": {
+    "extends": [
+      "@commitlint/config-conventional"
+    ]
   },
   "lint-staged": {
-    "*.{js,jsx,less,md,json}": [
+    "*.{md,json}": [
+      "prettier --write --no-error-on-unmatched-pattern"
+    ],
+    "*.{css,less}": [
+      "stylelint --fix",
       "prettier --write"
     ],
-    "*.ts?(x)": [
+    "*.{js,jsx}": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "*.{ts,tsx}": [
+      "eslint --fix",
       "prettier --parser=typescript --write"
     ]
   },
   "dependencies": {
-    "@ant-design/icons": "^4.7.0",
-    "antd": "^4.24.2",
-    "leaflet": "^1.9.1",
+    "@ant-design/icons": "^4.8.0",
+    "antd": "^5.0.2",
+    "leaflet": "^1.9.3",
     "lodash": "^4.17.21",
-    "mapbox-gl": "^2.11.0",
-    "react": "^16.12.0"
+    "mapbox-gl": "^2.11.0"
   },
   "devDependencies": {
-    "@types/lodash": "^4.14.189",
-    "@umijs/test": "^3.0.5",
-    "dumi": "^1.1.0",
-    "father-build": "^1.19.1",
-    "gh-pages": "^3.0.0",
-    "lint-staged": "^10.0.7",
-    "prettier": "^1.19.1",
-    "yorkie": "^2.0.0"
-  }
+    "@commitlint/cli": "^17.1.2",
+    "@commitlint/config-conventional": "^17.1.0",
+    "@umijs/lint": "^4.0.0",
+    "dumi": "^2.0.0-rc.0",
+    "eslint": "^8.23.0",
+    "father": "^4.1.0",
+    "husky": "^8.0.1",
+    "lint-staged": "^13.0.3",
+    "prettier": "^2.7.1",
+    "prettier-plugin-organize-imports": "^3.0.0",
+    "prettier-plugin-packagejson": "^2.2.18",
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0",
+    "stylelint": "^14.9.1"
+  },
+  "peerDependencies": {
+    "react": ">=16.9.0",
+    "react-dom": ">=16.9.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "authors": []
 }
