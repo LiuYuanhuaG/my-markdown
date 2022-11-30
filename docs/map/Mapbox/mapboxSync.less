@@ -1,20 +1,49 @@
-.map_box {
+.map-box {
   height: 600px;
   display: flex;
+
   :global {
     #async1 {
       height: 100%;
-      flex: auto;
+      width: 50%;
       background-color: aqua;
     }
+
+    .mapboxgl-ctrl {
+      display: none;
+    }
+
     #async2 {
-      flex: auto;
+      // flex: 1;
+      width: 50%;
       height: 100%;
       background-color: aquamarine;
     }
+
     #boundary {
       width: 2px;
       background-color: black;
+    }
+
+    #boundary:hover {
+      .boundary-btn {
+        display: block;
+      }
+    }
+
+    .boundary-btn {
+      display: none;
+      width: 20px;
+      height: 40px;
+      background-color: aqua;
+      cursor: pointer;
+      position: absolute;
+      top: 50%;
+      transform: translateX(-50%);
+    }
+
+    .boundary-btn:hover {
+      display: block;
     }
   }
 }

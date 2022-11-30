@@ -6,6 +6,6 @@
 import mapboxgl from '!mapbox-gl'; // 若Babel错误可尝试这样。使mapbox-gl不被转换器转换
 ```
 
-# 分屏展示 Demo
+# 手动实现 MapBox 分屏展示 Demo
 
-<code src='./mapboxSync'></code>
+<code src='./mapboxSync' transform='true'></code>

@@ -2,6 +2,10 @@ import { defineConfig } from 'dumi';
 const repo = 'my-markdown';
 const scriptPath =
   process.env.NODE_ENV == 'development' ? `/${repo}` : `/${repo}`;
+const publicPath =
+  process.env.NODE_ENV == 'development' ? `/${repo}/` : `/${repo}/`;
+const basePath =
+  process.env.NODE_ENV == 'development' ? `/${repo}/` : `/${repo}/`;
 
 export default defineConfig({
   outputPath: 'docs-dist',
@@ -25,8 +29,8 @@ export default defineConfig({
   // },
 
   // Because of using GitHub Pages
-  base: `/${repo}/`,
-  publicPath: `/${repo}/`,
+  base: basePath,
+  publicPath: publicPath,
   // alias: {
   //   src: path.resolve(__dirname, '.', './src/'),
   //   public: path.resolve(__dirname, '.', './public/'),

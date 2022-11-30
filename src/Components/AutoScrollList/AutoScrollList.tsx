@@ -90,16 +90,16 @@ const AutoScrollList = (props: AutoScrollListType) => {
 
   return (
     <div
-      className={styless.file_content}
+      className={styless['file-content']}
       ref={upListEl}
       style={contentStyle}
       onScroll={onScroll}
     >
       <div
-        className="list_item_scroll"
+        className="list-item-scroll"
         style={{ height: getScorll(), width: '100%' }}
       ></div>
-      <div style={{ transform: getTransform }} className="list_item_content">
+      <div style={{ transform: getTransform }} className="list-tem-content">
         {list.map((item, i) => (
           <div ref={i === 0 ? itemRef : null} key={i + Math.random()}>
             {itemRender(item)}

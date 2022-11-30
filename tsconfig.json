@@ -8,18 +8,24 @@
     "esModuleInterop": true,
     "sourceMap": true,
     "baseUrl": "./",
-    "strict": true,
+    // "strict": true,
+    "strict": false /* 关闭严格模式 */,
     "paths": {
       "@/*": ["src/*"],
       "@@/*": ["src/.umi/*"]
     },
     "allowSyntheticDefaultImports": true
   },
-  // "rules": {
-  //   // ...
-  //   "react-hooks/rules-of-hooks": "error", // Checks rules of Hooks
-  //   "react-hooks/exhaustive-deps": "warn" // Checks effect dependencies
-  // },
+  "rules": {
+    // ...
+    // "react-hooks/rules-of-hooks": "error", // Checks rules of Hooks
+    // "react-hooks/exhaustive-deps": "warn" // Checks effect dependencies
+    // "resolveNestedSelectors": true
+  },
+  "include": [
+    "typings.d.ts", //配置的.d.ts文件
+    "docs"
+  ],
   "exclude": [
     "node_modules",
     "lib",
@@ -29,6 +35,8 @@
     "**/__test__",
     "test",
     "tests",
-    "docs"
+    "docs",
+    "*.css",
+    "*.less"
   ]
 }

@@ -9,8 +9,9 @@
     "dist"
   ],
   "scripts": {
-    "build": "father build",
+    "build": "father build ",
     "build:watch": "father dev",
+    "deploys": "deploy.sh",
     "dev": "dumi dev",
     "docs:build": "dumi build",
     "doctor": "father doctor",
