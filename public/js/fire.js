@@ -1,5 +1,5 @@
-(function() {
-  var Fire = function() {
+(function () {
+  let Fire = function () {
     this.canvas = document.getElementById('fire');
     this.ctx = this.canvas.getContext('2d');
     this.canvas.height = window.innerHeight;
@@ -20,7 +20,7 @@
       false,
     );
   };
-  Fire.prototype.run = function() {
+  Fire.prototype.run = function () {
     //重新新绘制火焰和
     this.update();
     this.draw();
@@ -28,30 +28,30 @@
     //稳定重绘画面
     requestAnimationFrame(this.run.bind(this));
   };
-  Fire.prototype.update = function() {
+  Fire.prototype.update = function () {
     //绘制新的火焰（红色的圆）以及火花
     this.aFires.push(new Flame(this.mouse));
     this.aSpark.push(new Spark(this.mouse));
     this.aSpark2.push(new Spark(this.mouse));
 
     //之前元素，即新的火焰（红色的圆）以及火花的生命周期未完的话，就继续更新它，否则就删除它
-    for (var i = this.aFires.length - 1; i >= 0; i--) {
+    for (let i = this.aFires.length - 1; i >= 0; i--) {
       if (this.aFires[i].alive) this.aFires[i].update();
       else this.aFires.splice(i, 1);
     }
 
-    for (var i = this.aSpark.length - 1; i >= 0; i--) {
+    for (let i = this.aSpark.length - 1; i >= 0; i--) {
       if (this.aSpark[i].alive) this.aSpark[i].update();
       else this.aSpark.splice(i, 1);
     }
 
-    for (var i = this.aSpark2.length - 1; i >= 0; i--) {
+    for (let i = this.aSpark2.length - 1; i >= 0; i--) {
       if (this.aSpark2[i].alive) this.aSpark2[i].update();
       else this.aSpark2.splice(i, 1);
     }
   };
 
-  Fire.prototype.draw = function() {
+  Fire.prototype.draw = function () {
     //绘制背景
     this.ctx.globalCompositeOperation = 'source-over';
     // this.ctx.fillStyle = "rgba( 15, 5, 2, 1 )";
@@ -87,26 +87,26 @@
 
     //绘制火焰
     this.ctx.globalCompositeOperation = 'overlay';
-    for (var i = this.aFires.length - 1; i >= 0; i--)
+    for (let i = this.aFires.length - 1; i >= 0; i--)
       this.aFires[i].draw(this.ctx);
 
     //绘制粒子
     this.ctx.globalCompositeOperation = 'soft-light';
-    for (var i = this.aSpark.length - 1; i >= 0; i--)
+    for (let i = this.aSpark.length - 1; i >= 0; i--)
       if (i % 2 === 0) this.aSpark[i].draw(this.ctx);
 
     //绘制粒子2
     this.ctx.globalCompositeOperation = 'color-dodge';
-    for (var i = this.aSpark2.length - 1; i >= 0; i--)
+    for (let i = this.aSpark2.length - 1; i >= 0; i--)
       this.aSpark2[i].draw(this.ctx);
   };
 
-  Fire.prototype.updateMouse = function(e) {
+  Fire.prototype.updateMouse = function (e) {
     this.mouse.x = e.clientX;
     this.mouse.y = e.clientY;
   };
 
-  var Flame = function(mouse) {
+  let Flame = function (mouse) {
     //鼠标坐标
     this.cx = mouse.x;
     this.cy = mouse.y;
@@ -133,7 +133,7 @@
     };
   };
 
-  Flame.prototype.update = function() {
+  Flame.prototype.update = function () {
     //y坐标变化
     this.y -= this.vy;
     this.vy += 0.05;
@@ -156,7 +156,7 @@
       this.c.a += 0.08;
     }
   };
-  Flame.prototype.draw = function(ctx) {
+  Flame.prototype.draw = function (ctx) {
     ctx.beginPath();
     ctx.arc(this.x, this.y, this.r * 3, 0, 2 * Math.PI);
     ctx.fillStyle =
@@ -186,7 +186,7 @@
     ctx.fill();
   };
 
-  var Spark = function(mouse) {
+  let Spark = function (mouse) {
     this.cx = mouse.x;
     this.cy = mouse.y;
     this.x = rand(this.cx - 40, this.cx + 40);
@@ -205,7 +205,7 @@
       a: rand(0.8, 0.9),
     };
   };
-  Spark.prototype.update = function() {
+  Spark.prototype.update = function () {
     this.lx = this.x;
     this.ly = this.y;
 
@@ -222,7 +222,7 @@
       if (this.c.a <= 0) this.alive = false;
     }
   };
-  Spark.prototype.draw = function(ctx) {
+  Spark.prototype.draw = function (ctx) {
     ctx.beginPath();
     ctx.moveTo(this.lx, this.ly);
     ctx.lineTo(this.x, this.y);
@@ -259,16 +259,16 @@
     ctx.closePath();
   };
 
-  rand = function(min, max) {
+  rand = function (min, max) {
     return Math.random() * (max - min) + min;
   };
-  onresize = function() {
+  onresize = function () {
     oCanvas.canvas.width = window.innerWidth;
     oCanvas.canvas.height = window.innerHeight;
   };
 
-  var oCanvas;
-  init = function() {
+  let oCanvas;
+  init = function () {
     oCanvas = new Fire();
     oCanvas.run();
   };

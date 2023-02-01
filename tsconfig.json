@@ -9,10 +9,11 @@
     "sourceMap": true,
     "baseUrl": "./",
     // "strict": true,
-    "strict": false /* 关闭严格模式 */,
+    "strict": true /* 关闭严格模式 */,
     "paths": {
       "@/*": ["src/*"],
       "@@/*": ["src/.umi/*"]
+      // "@@/*": [".dumi/tmp/*"]
     },
     "allowSyntheticDefaultImports": true
   },
@@ -37,6 +38,7 @@
     "tests",
     "docs",
     "*.css",
-    "*.less"
+    "*.less",
+    "public"
   ]
 }

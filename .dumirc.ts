@@ -1,4 +1,5 @@
 import { defineConfig } from 'dumi';
+import path from 'path';
 const repo = 'my-markdown';
 const scriptPath =
   process.env.NODE_ENV == 'development' ? `/${repo}` : `/${repo}`;
@@ -9,6 +10,7 @@ const basePath =
 
 export default defineConfig({
   outputPath: 'docs-dist',
+
   themeConfig: {
     name: '知识海洋里的淡水鱼',
     logo: 'https://avatars.githubusercontent.com/u/81506881?s=48&v=4',
@@ -22,7 +24,13 @@ export default defineConfig({
   },
 
   favicons: ['https://avatars.githubusercontent.com/u/81506881?s=48&v=4'],
-
+  resolve: {
+    docDirs: ['docs'], // 2.0 默认值
+    atomDirs: [
+      // { type: 'article', dir: 'src/article' },
+      { type: 'component', dir: 'src/Components' },
+    ],
+  },
   hash: true,
   // dynamicImport: {
   //   loading: '@/Loading',
@@ -31,24 +39,21 @@ export default defineConfig({
   // Because of using GitHub Pages
   base: basePath,
   publicPath: publicPath,
-  // alias: {
-  //   src: path.resolve(__dirname, '.', './src/'),
-  //   public: path.resolve(__dirname, '.', './public/'),
-  //   Components: path.resolve(__dirname, '.', 'src/Components/'),
-  //   MyComponents: path.resolve(__dirname, '.', 'src/MyComponents/'),
-  //   style: path.resolve(__dirname, '.', 'src/style/'),
-  // },
+  // runtimePublicPath: {},
+  alias: {
+    src: path.resolve(__dirname, '.', './src/'),
+    public: path.resolve(__dirname, '.', './public/'),
+    Components: path.resolve(__dirname, '.', 'src/Components/'),
+    MyComponents: path.resolve(__dirname, '.', 'src/MyComponents/'),
+    style: path.resolve(__dirname, '.', 'src/style/'),
+  },
 
   headScripts: [
     { src: 'https://cdn.bootcdn.net/ajax/libs/three.js/0.144.0/three.js' },
     { src: 'https://cdn.bootcdn.net/ajax/libs/jquery/3.6.1/jquery.js' },
+    { src: 'https://cdnjs.cloudflare.com/ajax/libs/less.js/3.8.1/less.min.js' },
   ],
-  resolve: {
-    atomDirs: [
-      { type: 'component', dir: 'src' }, // 默认值
-      { type: 'Components', dir: 'src/Components' },
-    ],
-  },
+
   scripts: [
     {
       content: `(function(){
@@ -59,12 +64,16 @@ export default defineConfig({
       charset: 'utf-8',
     },
     {
-      src: `${scriptPath}/show.js`,
+      src: `${scriptPath}/js/show.js`,
     },
     // { content: 'import "./show.js"', charset: 'utf-8' },
   ],
   links: [
-    { rel: 'stylesheet', type: 'text/css', href: `/${repo}/css/global.less` },
+    {
+      rel: 'stylesheet/less',
+      type: 'text/css',
+      href: `/${repo}/css/global.less`,
+    },
     // { rel: 'stylesheet', type: 'text/css', href: `/${repo}/css/global.less` },
   ],
   styles: [

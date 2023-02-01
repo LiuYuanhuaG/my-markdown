@@ -1,26 +1,26 @@
 ---
 title: 总览
-order: 1
+order: 0
 nav:
   title: 前端之路
-  order: 1
+  order: 0
 ---
 
 ## 1. 2022-plan
 
 - 文档尚在编写中的统一用 tag 标签表示
-  - 例如: <Badge>tailwindCSS</Badge>
+  - 例如: `<Badge>`tailwindCSS `</Badge>`
 - alread done
   - ~~ ~~
 - `feature`
-  - <Badge>eletron</Badge>
-  - <Badge>webGL</Badge>
-  - <Badge>threejs</Badge>
-  - <Badge>rxjs</Badge>
+  - `<Badge>`eletron `</Badge>`
+  - `<Badge>`webGL `</Badge>`
+  - `<Badge>`threejs `</Badge>`
+  - `<Badge>`rxjs `</Badge>`
 
 ## 2. 需要掌握的基本规范
 
-- [git 命令及 git-commit 规范](/article/2.基本需要掌握的规范/1.git%20命令及%20git-commit%20规范)
+- [git 命令及 git-commit 规范](/article/2/baseguifan/git-commit)
 - [typescript 注释规范](/article/2.基本需要掌握的规范/2.typescript%20注释规范)
 - [json-schema](/article/2.基本需要掌握的规范/3.json-schema)
 
@@ -134,9 +134,9 @@ nav:
 
 ## 11. 微信小程序
 
-- <Badge>原生微信小程序</Badge>
-- <Badge>taro</Badge>
-- <Badge>uniapp</Badge>
+- `<Badge>`原生微信小程序 `</Badge>`
+- `<Badge>`taro `</Badge>`
+- `<Badge>`uniapp `</Badge>`
 
 ## 12. typescript
 
@@ -235,7 +235,7 @@ vue sfc
 - [canvas](/article2/14.可视化/canvas)
 - [svg](/article2/14.可视化/svg)
 - [d3](/article2/14.可视化/d3)
-- <Badge>three.js</Badge>
+- `<Badge>`three.js `</Badge>`
 
 ## 15. gis
 
@@ -247,8 +247,8 @@ vue sfc
 
 ## 16. 前端的其他 API
 
-- <Badge>websocket</Badge>
-- <Badge>requestAnimationFrame</Badge>
+- `<Badge>`websocket `</Badge>`
+- `<Badge>`requestAnimationFrame `</Badge>`
 
 ## 17. [项目难点](/project)
 

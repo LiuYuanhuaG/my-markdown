@@ -1,3 +1,9 @@
+---
+title: JSAPI
+
+order: 1
+---
+
 # 内置对象
 
 ## 值属性
@@ -6,7 +12,7 @@
 
 ### [`Infinity`](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Infinity)
 
-​ 一个数值 表示无穷大 只读
+一个数值 表示无穷大 只读
 
 ### [`NaN`](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/NaN)
 
@@ -399,8 +405,6 @@ console.log(Foo.prototype.isPrototypeOf(baz)); // true
 console.log(Object.prototype.isPrototypeOf(baz)); // true
 ```
 
-###
-
 ### 不常用
 
 ### Object.freeze
@@ -651,7 +655,7 @@ console.log(_ow2); //{}
 
 ### Object.getPrototypeOf
 
-方法返回指定对象的原型（内部`[[Prototype]]`属性的值）
+方法返回指定对象的原型（内部 `[[Prototype]]`属性的值）
 
 ```js
 const prototype1 = {};
@@ -755,8 +759,6 @@ Object.defineProperties(obj, {
 obj.age = 22;
 console.log(obj.name, obj.age, obj); // 张三 张三22 {name: '张三', name_age: '张三22'}
 ```
-
-###
 
 ## Function
 
@@ -1019,13 +1021,13 @@ test(Function('a', 'b')); // function anonymous(a\n) {\nb\n}
 | Math.fround(值)       |      | 数字转成浮点型 |      |                                                |
 | Math.max(值)          |      | 最大值         |      | 一组数                                         |
 | Math.min              |      | 最小值         |      |                                                |
-| Math.pow(x,y)         |      | 幂             |      | Math.pow(7,2) => 7² \|\| 2\*\*3 = 8            |
+| Math.pow(x,y)         |      | 幂             |      | Math.pow(7,2) => 7²\|\| 2\*\*3 = 8             |
 | Math.random()\*100)+1 |      | 伪随机数[0,1)  |      | parseInt(Math.random ( )\*5 ); => 0-4 的随机数 |
 | Math.round( )         |      | 四舍五入       |      | 小数点是 5 时候 向大取整                       |
 
 ## Date
 
-创建一个新`Date`对象的唯一方法是通过[`new`](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Operators/new) 操作符，例如：`let now = new Date();` 若将它作为常规函数调用（即不加 [`new`](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Operators/new) 操作符），将返回一个字符串，而非 `Date` 对象
+创建一个新 `Date`对象的唯一方法是通过[`new`](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Operators/new) 操作符，例如：`let now = new Date();` 若将它作为常规函数调用（即不加 [`new`](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Operators/new) 操作符），将返回一个字符串，而非 `Date` 对象
 
 一下是常用的：
 
@@ -1177,7 +1179,7 @@ $  匹配输入字符串的结束位置
 | \                             | 转义符                                                                                                                                             |
 | (), (?:), (?=), (?<=),(?!),[] | 圆括号和方括号                                                                                                                                     |
 | \*, +, ?, {n}, {n,}, {n,m}    | 限定符                                                                                                                                             |
-| ^, \$, \任何元字符、任何字符  | 定位点和序列（即：位置和顺序）                                                                                                                     |
+| ^,\$, \任何元字符、任何字符   | 定位点和序列（即：位置和顺序）                                                                                                                     |
 | \|                            | 替换，"或"操作 字符具有高于替换运算符的优先级，使得"m\|food"匹配"m"或"food"。若要匹配"mood"或"food"，请使用括号创建子表达式，从而产生"(m\|f)ood"。 |
 
 #### 贪婪模式
@@ -1615,7 +1617,7 @@ let mySet = new Set();
 
 ### has
 
-根据`WeakSet` 是否存在相应对象返回布尔值。
+根据 `WeakSet` 是否存在相应对象返回布尔值。
 
 ## Reflect
 
@@ -1628,11 +1630,8 @@ let mySet = new Set();
 [意义](https://blog.csdn.net/qq_39852145/article/details/114240895)
 
 - Reflect.deleteProperty(target, propertyKey) // 相当于函数的 delete 操作符 delete target[name]
-
 - Reflect.defineProperty(target, propertyKey, attributes) // 相当于 Object.defineProperty()
-
 - Reflect.apply(target, thisArgument, argumentsList) // 相当于 Function.prototype.apply()
-
 - Reflect.construct(target,argumentsList) // new target(...args)
 
   ```js
@@ -1646,10 +1645,8 @@ let mySet = new Set();
   console.log(a);
   ```
 
-* Reflect.ownKeys(target) // 返回一个包含所有自身属性（不包含继承属性）的数组。(类似于 Object.keys(), 但不会受`enumerable` 影响)
-
+* Reflect.ownKeys(target) // 返回一个包含所有自身属性（不包含继承属性）的数组。(类似于 Object.keys(), 但不会受 `enumerable` 影响)
 * Reflect.has(target, propertyKey) // 与 in 操作符相同
-
 * ```js
   #方法与从 对象 (target[propertyKey]) 中读取属性类似，但它是通过一个函数执行来操作的。
   Reflect.get(target, propertyKey[, receiver])
@@ -1672,7 +1669,7 @@ let mySet = new Set();
 
 ### Proxy.revocable
 
-​ 可创建一个可撤销的代理 直接执行 revoke() 方法 可以撤销代理
+可创建一个可撤销的代理 直接执行 revoke() 方法 可以撤销代理
 
 ```js
 var revocable = Proxy.revocable(
@@ -1815,3 +1812,27 @@ delete p.a; // "called: a"
 ```
 
 > 更多属性请[前往](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Proxy/Proxy)
+
+---
+
+title: 总览
+
+order: 0
+
+nav:
+
+title: 前端之路
+
+## order: 0
+
+---
+
+title: 总览
+
+order: 0
+
+nav:
+
+title: 前端之路
+
+## order: 0

@@ -1,6 +1,6 @@
 var THREE = THREE || {};
 if (!self.Int32Array) (self.Int32Array = Array), (self.Float32Array = Array);
-THREE.Color = function(a) {
+THREE.Color = function (a) {
   a !== void 0 && this.setHex(a);
   return this;
 };
@@ -9,31 +9,31 @@ THREE.Color.prototype = {
   r: 1,
   g: 1,
   b: 1,
-  copy: function(a) {
+  copy: function (a) {
     this.r = a.r;
     this.g = a.g;
     this.b = a.b;
     return this;
   },
-  copyGammaToLinear: function(a) {
+  copyGammaToLinear: function (a) {
     this.r = a.r * a.r;
     this.g = a.g * a.g;
     this.b = a.b * a.b;
     return this;
   },
-  copyLinearToGamma: function(a) {
+  copyLinearToGamma: function (a) {
     this.r = Math.sqrt(a.r);
     this.g = Math.sqrt(a.g);
     this.b = Math.sqrt(a.b);
     return this;
   },
-  setRGB: function(a, b, c) {
+  setRGB: function (a, b, c) {
     this.r = a;
     this.g = b;
     this.b = c;
     return this;
   },
-  setHSV: function(a, b, c) {
+  setHSV: function (a, b, c) {
     var d, f, e;
     if (c === 0) this.r = this.g = this.b = 0;
     else
@@ -76,19 +76,19 @@ THREE.Color.prototype = {
       }
     return this;
   },
-  setHex: function(a) {
+  setHex: function (a) {
     a = Math.floor(a);
     this.r = ((a >> 16) & 255) / 255;
     this.g = ((a >> 8) & 255) / 255;
     this.b = (a & 255) / 255;
     return this;
   },
-  getHex: function() {
+  getHex: function () {
     return (
       (~~(this.r * 255) << 16) ^ (~~(this.g * 255) << 8) ^ ~~(this.b * 255)
     );
   },
-  getContextStyle: function() {
+  getContextStyle: function () {
     return (
       'rgb(' +
       Math.floor(this.r * 255) +
@@ -99,210 +99,210 @@ THREE.Color.prototype = {
       ')'
     );
   },
-  clone: function() {
+  clone: function () {
     return new THREE.Color().setRGB(this.r, this.g, this.b);
   },
 };
-THREE.Vector2 = function(a, b) {
+THREE.Vector2 = function (a, b) {
   this.x = a || 0;
   this.y = b || 0;
 };
 THREE.Vector2.prototype = {
   constructor: THREE.Vector2,
-  set: function(a, b) {
+  set: function (a, b) {
     this.x = a;
     this.y = b;
     return this;
   },
-  copy: function(a) {
+  copy: function (a) {
     this.x = a.x;
     this.y = a.y;
     return this;
   },
-  clone: function() {
+  clone: function () {
     return new THREE.Vector2(this.x, this.y);
   },
-  add: function(a, b) {
+  add: function (a, b) {
     this.x = a.x + b.x;
     this.y = a.y + b.y;
     return this;
   },
-  addSelf: function(a) {
+  addSelf: function (a) {
     this.x += a.x;
     this.y += a.y;
     return this;
   },
-  sub: function(a, b) {
+  sub: function (a, b) {
     this.x = a.x - b.x;
     this.y = a.y - b.y;
     return this;
   },
-  subSelf: function(a) {
+  subSelf: function (a) {
     this.x -= a.x;
     this.y -= a.y;
     return this;
   },
-  multiplyScalar: function(a) {
+  multiplyScalar: function (a) {
     this.x *= a;
     this.y *= a;
     return this;
   },
-  divideScalar: function(a) {
+  divideScalar: function (a) {
     a ? ((this.x /= a), (this.y /= a)) : this.set(0, 0);
     return this;
   },
-  negate: function() {
+  negate: function () {
     return this.multiplyScalar(-1);
   },
-  dot: function(a) {
+  dot: function (a) {
     return this.x * a.x + this.y * a.y;
   },
-  lengthSq: function() {
+  lengthSq: function () {
     return this.x * this.x + this.y * this.y;
   },
-  length: function() {
+  length: function () {
     return Math.sqrt(this.lengthSq());
   },
-  normalize: function() {
+  normalize: function () {
     return this.divideScalar(this.length());
   },
-  distanceTo: function(a) {
+  distanceTo: function (a) {
     return Math.sqrt(this.distanceToSquared(a));
   },
-  distanceToSquared: function(a) {
+  distanceToSquared: function (a) {
     var b = this.x - a.x,
       a = this.y - a.y;
     return b * b + a * a;
   },
-  setLength: function(a) {
+  setLength: function (a) {
     return this.normalize().multiplyScalar(a);
   },
-  equals: function(a) {
+  equals: function (a) {
     return a.x === this.x && a.y === this.y;
   },
 };
-THREE.Vector3 = function(a, b, c) {
+THREE.Vector3 = function (a, b, c) {
   this.x = a || 0;
   this.y = b || 0;
   this.z = c || 0;
 };
 THREE.Vector3.prototype = {
   constructor: THREE.Vector3,
-  set: function(a, b, c) {
+  set: function (a, b, c) {
     this.x = a;
     this.y = b;
     this.z = c;
     return this;
   },
-  setX: function(a) {
+  setX: function (a) {
     this.x = a;
     return this;
   },
-  setY: function(a) {
+  setY: function (a) {
     this.y = a;
     return this;
   },
-  setZ: function(a) {
+  setZ: function (a) {
     this.z = a;
     return this;
   },
-  copy: function(a) {
+  copy: function (a) {
     this.x = a.x;
     this.y = a.y;
     this.z = a.z;
     return this;
   },
-  clone: function() {
+  clone: function () {
     return new THREE.Vector3(this.x, this.y, this.z);
   },
-  add: function(a, b) {
+  add: function (a, b) {
     this.x = a.x + b.x;
     this.y = a.y + b.y;
     this.z = a.z + b.z;
     return this;
   },
-  addSelf: function(a) {
+  addSelf: function (a) {
     this.x += a.x;
     this.y += a.y;
     this.z += a.z;
     return this;
   },
-  addScalar: function(a) {
+  addScalar: function (a) {
     this.x += a;
     this.y += a;
     this.z += a;
     return this;
   },
-  sub: function(a, b) {
+  sub: function (a, b) {
     this.x = a.x - b.x;
     this.y = a.y - b.y;
     this.z = a.z - b.z;
     return this;
   },
-  subSelf: function(a) {
+  subSelf: function (a) {
     this.x -= a.x;
     this.y -= a.y;
     this.z -= a.z;
     return this;
   },
-  multiply: function(a, b) {
+  multiply: function (a, b) {
     this.x = a.x * b.x;
     this.y = a.y * b.y;
     this.z = a.z * b.z;
     return this;
   },
-  multiplySelf: function(a) {
+  multiplySelf: function (a) {
     this.x *= a.x;
     this.y *= a.y;
     this.z *= a.z;
     return this;
   },
-  multiplyScalar: function(a) {
+  multiplyScalar: function (a) {
     this.x *= a;
     this.y *= a;
     this.z *= a;
     return this;
   },
-  divideSelf: function(a) {
+  divideSelf: function (a) {
     this.x /= a.x;
     this.y /= a.y;
     this.z /= a.z;
     return this;
   },
-  divideScalar: function(a) {
+  divideScalar: function (a) {
     a
       ? ((this.x /= a), (this.y /= a), (this.z /= a))
       : (this.z = this.y = this.x = 0);
     return this;
   },
-  negate: function() {
+  negate: function () {
     return this.multiplyScalar(-1);
   },
-  dot: function(a) {
+  dot: function (a) {
     return this.x * a.x + this.y * a.y + this.z * a.z;
   },
-  lengthSq: function() {
+  lengthSq: function () {
     return this.x * this.x + this.y * this.y + this.z * this.z;
   },
-  length: function() {
+  length: function () {
     return Math.sqrt(this.lengthSq());
   },
-  lengthManhattan: function() {
+  lengthManhattan: function () {
     return this.x + this.y + this.z;
   },
-  normalize: function() {
+  normalize: function () {
     return this.divideScalar(this.length());
   },
-  setLength: function(a) {
+  setLength: function (a) {
     return this.normalize().multiplyScalar(a);
   },
-  cross: function(a, b) {
+  cross: function (a, b) {
     this.x = a.y * b.z - a.z * b.y;
     this.y = a.z * b.x - a.x * b.z;
     this.z = a.x * b.y - a.y * b.x;
     return this;
   },
-  crossSelf: function(a) {
+  crossSelf: function (a) {
     var b = this.x,
       c = this.y,
       d = this.z;
@@ -311,18 +311,18 @@ THREE.Vector3.prototype = {
     this.z = b * a.y - c * a.x;
     return this;
   },
-  distanceTo: function(a) {
+  distanceTo: function (a) {
     return Math.sqrt(this.distanceToSquared(a));
   },
-  distanceToSquared: function(a) {
+  distanceToSquared: function (a) {
     return new THREE.Vector3().sub(this, a).lengthSq();
   },
-  setPositionFromMatrix: function(a) {
+  setPositionFromMatrix: function (a) {
     this.x = a.n14;
     this.y = a.n24;
     this.z = a.n34;
   },
-  setRotationFromMatrix: function(a) {
+  setRotationFromMatrix: function (a) {
     var b = Math.cos(this.y);
     this.y = Math.asin(a.n13);
     Math.abs(b) > 1.0e-5
@@ -330,11 +330,11 @@ THREE.Vector3.prototype = {
         (this.z = Math.atan2(-a.n12 / b, a.n11 / b)))
       : ((this.x = 0), (this.z = Math.atan2(a.n21, a.n22)));
   },
-  isZero: function() {
+  isZero: function () {
     return this.lengthSq() < 1.0e-4;
   },
 };
-THREE.Vector4 = function(a, b, c, d) {
+THREE.Vector4 = function (a, b, c, d) {
   this.x = a || 0;
   this.y = b || 0;
   this.z = c || 0;
@@ -342,82 +342,82 @@ THREE.Vector4 = function(a, b, c, d) {
 };
 THREE.Vector4.prototype = {
   constructor: THREE.Vector4,
-  set: function(a, b, c, d) {
+  set: function (a, b, c, d) {
     this.x = a;
     this.y = b;
     this.z = c;
     this.w = d;
     return this;
   },
-  copy: function(a) {
+  copy: function (a) {
     this.x = a.x;
     this.y = a.y;
     this.z = a.z;
     this.w = a.w !== void 0 ? a.w : 1;
   },
-  clone: function() {
+  clone: function () {
     return new THREE.Vector4(this.x, this.y, this.z, this.w);
   },
-  add: function(a, b) {
+  add: function (a, b) {
     this.x = a.x + b.x;
     this.y = a.y + b.y;
     this.z = a.z + b.z;
     this.w = a.w + b.w;
     return this;
   },
-  addSelf: function(a) {
+  addSelf: function (a) {
     this.x += a.x;
     this.y += a.y;
     this.z += a.z;
     this.w += a.w;
     return this;
   },
-  sub: function(a, b) {
+  sub: function (a, b) {
     this.x = a.x - b.x;
     this.y = a.y - b.y;
     this.z = a.z - b.z;
     this.w = a.w - b.w;
     return this;
   },
-  subSelf: function(a) {
+  subSelf: function (a) {
     this.x -= a.x;
     this.y -= a.y;
     this.z -= a.z;
     this.w -= a.w;
     return this;
   },
-  multiplyScalar: function(a) {
+  multiplyScalar: function (a) {
     this.x *= a;
     this.y *= a;
     this.z *= a;
     this.w *= a;
     return this;
   },
-  divideScalar: function(a) {
+  divideScalar: function (a) {
     a
       ? ((this.x /= a), (this.y /= a), (this.z /= a), (this.w /= a))
       : ((this.z = this.y = this.x = 0), (this.w = 1));
     return this;
   },
-  negate: function() {
+  negate: function () {
     return this.multiplyScalar(-1);
   },
-  dot: function(a) {
+  dot: function (a) {
     return this.x * a.x + this.y * a.y + this.z * a.z + this.w * a.w;
   },
-  lengthSq: function() {
+  lengthSq: function () {
     return this.dot(this);
   },
-  length: function() {
+  length: function () {
     return Math.sqrt(this.lengthSq());
   },
-  normalize: function() {
+  normalize: function () {
     return this.divideScalar(this.length());
   },
-  setLength: function(a) {
+  setLength: function (a) {
     return this.normalize().multiplyScalar(a);
   },
-  lerpSelf: function(a, b) {
+  lerpSelf: function (a, b) {
     this.x += (a.x - this.x) * b;
     this.y += (a.y - this.y) * b;
     this.z += (a.z - this.z) * b;
@@ -425,7 +425,7 @@ THREE.Vector4.prototype = {
     return this;
   },
 };
-THREE.Ray = function(a, b) {
+THREE.Ray = function (a, b) {
   function c(a, b, c) {
     i.sub(c, a);
     p = i.dot(b);
@@ -449,17 +449,17 @@ THREE.Ray = function(a, b) {
   }
   this.origin = a || new THREE.Vector3();
   this.direction = b || new THREE.Vector3();
-  this.intersectScene = function(a) {
+  this.intersectScene = function (a) {
     return this.intersectObjects(a.children);
   };
-  this.intersectObjects = function(a) {
+  this.intersectObjects = function (a) {
     var b,
       c,
       d = [];
     b = 0;
     for (c = a.length; b < c; b++)
       Array.prototype.push.apply(d, this.intersectObject(a[b]));
-    d.sort(function(a, b) {
+    d.sort(function (a, b) {
       return a.distance - b.distance;
     });
     return d;
@@ -473,7 +473,7 @@ THREE.Ray = function(a, b) {
     m = new THREE.Vector3(),
     l = new THREE.Vector3(),
     j = new THREE.Vector3();
-  this.intersectObject = function(k) {
+  this.intersectObject = function (k) {
     for (var i, o = [], n = 0, W = k.children.length; n < W; n++)
       Array.prototype.push.apply(o, this.intersectObject(k.children[n]));
     if (k instanceof THREE.Particle) {
@@ -553,7 +553,7 @@ THREE.Ray = function(a, b) {
     z,
     D;
 };
-THREE.Rectangle = function() {
+THREE.Rectangle = function () {
   function a() {
     e = d - b;
     g = f - c;
@@ -565,31 +565,31 @@ THREE.Rectangle = function() {
     e,
     g,
     h = !0;
-  this.getX = function() {
+  this.getX = function () {
     return b;
   };
-  this.getY = function() {
+  this.getY = function () {
     return c;
   };
-  this.getWidth = function() {
+  this.getWidth = function () {
     return e;
   };
-  this.getHeight = function() {
+  this.getHeight = function () {
     return g;
   };
-  this.getLeft = function() {
+  this.getLeft = function () {
     return b;
   };
-  this.getTop = function() {
+  this.getTop = function () {
     return c;
   };
-  this.getRight = function() {
+  this.getRight = function () {
     return d;
   };
-  this.getBottom = function() {
+  this.getBottom = function () {
     return f;
   };
-  this.set = function(e, g, j, i) {
+  this.set = function (e, g, j, i) {
     h = !1;
     b = e;
     c = g;
@@ -597,7 +597,7 @@ THREE.Rectangle = function() {
     f = i;
     a();
   };
-  this.addPoint = function(e, g) {
+  this.addPoint = function (e, g) {
     h
       ? ((h = !1), (b = e), (c = g), (d = e), (f = g))
       : ((b = b < e ? b : e),
@@ -606,7 +606,7 @@ THREE.Rectangle = function() {
         (f = f > g ? f : g));
     a();
   };
-  this.add3Points = function(e, g, j, i, n, o) {
+  this.add3Points = function (e, g, j, i, n, o) {
     h
       ? ((h = !1),
         (b = e < j ? (e < n ? e : n) : j < n ? j : n),
@@ -679,7 +679,7 @@ THREE.Rectangle = function() {
             : f));
     a();
   };
-  this.addRectangle = function(e) {
+  this.addRectangle = function (e) {
     h
       ? ((h = !1),
         (b = e.getLeft()),
@@ -692,55 +692,55 @@ THREE.Rectangle = function() {
         (f = f > e.getBottom() ? f : e.getBottom()));
     a();
   };
-  this.inflate = function(e) {
+  this.inflate = function (e) {
     b -= e;
     c -= e;
     d += e;
     f += e;
     a();
   };
-  this.minSelf = function(e) {
+  this.minSelf = function (e) {
     b = b > e.getLeft() ? b : e.getLeft();
     c = c > e.getTop() ? c : e.getTop();
     d = d < e.getRight() ? d : e.getRight();
     f = f < e.getBottom() ? f : e.getBottom();
     a();
   };
-  this.intersects = function(a) {
+  this.intersects = function (a) {
     return (
       Math.min(d, a.getRight()) - Math.max(b, a.getLeft()) >= 0 &&
       Math.min(f, a.getBottom()) - Math.max(c, a.getTop()) >= 0
     );
   };
-  this.empty = function() {
+  this.empty = function () {
     h = !0;
     f = d = c = b = 0;
     a();
   };
-  this.isEmpty = function() {
+  this.isEmpty = function () {
     return h;
   };
 };
 THREE.Math = {
-  clamp: function(a, b, c) {
+  clamp: function (a, b, c) {
     return a < b ? b : a > c ? c : a;
   },
-  clampBottom: function(a, b) {
+  clampBottom: function (a, b) {
     return a < b ? b : a;
   },
-  mapLinear: function(a, b, c, d, f) {
+  mapLinear: function (a, b, c, d, f) {
     return d + ((a - b) * (f - d)) / (c - b);
   },
-  random16: function() {
+  random16: function () {
     return (65280 * Math.random() + 255 * Math.random()) / 65535;
   },
 };
-THREE.Matrix3 = function() {
+THREE.Matrix3 = function () {
   this.m = [];
 };
 THREE.Matrix3.prototype = {
   constructor: THREE.Matrix3,
-  transpose: function() {
+  transpose: function () {
     var a,
       b = this.m;
     a = b[1];
@@ -754,7 +754,7 @@ THREE.Matrix3.prototype = {
     b[7] = a;
     return this;
   },
-  transposeIntoArray: function(a) {
+  transposeIntoArray: function (a) {
     var b = this.m;
     a[0] = b[0];
     a[1] = b[3];
@@ -768,7 +768,7 @@ THREE.Matrix3.prototype = {
     return this;
   },
 };
-THREE.Matrix4 = function(a, b, c, d, f, e, g, h, m, l, j, i, n, o, p, k) {
+THREE.Matrix4 = function (a, b, c, d, f, e, g, h, m, l, j, i, n, o, p, k) {
   this.set(
     a !== void 0 ? a : 1,
     b || 0,
@@ -792,7 +792,7 @@ THREE.Matrix4 = function(a, b, c, d, f, e, g, h, m, l, j, i, n, o, p, k) {
 };
 THREE.Matrix4.prototype = {
   constructor: THREE.Matrix4,
-  set: function(a, b, c, d, f, e, g, h, m, l, j, i, n, o, p, k) {
+  set: function (a, b, c, d, f, e, g, h, m, l, j, i, n, o, p, k) {
     this.n11 = a;
     this.n12 = b;
     this.n13 = c;
@@ -811,11 +811,11 @@ THREE.Matrix4.prototype = {
     this.n44 = k;
     return this;
   },
-  identity: function() {
+  identity: function () {
     this.set(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1);
     return this;
   },
-  copy: function(a) {
+  copy: function (a) {
     this.set(
       a.n11,
       a.n12,
@@ -836,7 +836,7 @@ THREE.Matrix4.prototype = {
     );
     return this;
   },
-  lookAt: function(a, b, c) {
+  lookAt: function (a, b, c) {
     var d = THREE.Matrix4.__v1,
       f = THREE.Matrix4.__v2,
       e = THREE.Matrix4.__v3;
@@ -856,7 +856,7 @@ THREE.Matrix4.prototype = {
     this.n33 = e.z;
     return this;
   },
-  multiply: function(a, b) {
+  multiply: function (a, b) {
     var c = a.n11,
       d = a.n12,
       f = a.n13,
@@ -907,10 +907,10 @@ THREE.Matrix4.prototype = {
     this.n44 = p * w + k * u + s * W + K * I;
     return this;
   },
-  multiplySelf: function(a) {
+  multiplySelf: function (a) {
     return this.multiply(this, a);
   },
-  multiplyToArray: function(a, b, c) {
+  multiplyToArray: function (a, b, c) {
     this.multiply(a, b);
     c[0] = this.n11;
     c[1] = this.n21;
@@ -930,7 +930,7 @@ THREE.Matrix4.prototype = {
     c[15] = this.n44;
     return this;
   },
-  multiplyScalar: function(a) {
+  multiplyScalar: function (a) {
     this.n11 *= a;
     this.n12 *= a;
     this.n13 *= a;
@@ -949,7 +949,7 @@ THREE.Matrix4.prototype = {
     this.n44 *= a;
     return this;
   },
-  multiplyVector3: function(a) {
+  multiplyVector3: function (a) {
     var b = a.x,
       c = a.y,
       d = a.z,
@@ -959,7 +959,7 @@ THREE.Matrix4.prototype = {
     a.z = (this.n31 * b + this.n32 * c + this.n33 * d + this.n34) * f;
     return a;
   },
-  multiplyVector4: function(a) {
+  multiplyVector4: function (a) {
     var b = a.x,
       c = a.y,
       d = a.z,
@@ -970,7 +970,7 @@ THREE.Matrix4.prototype = {
     a.w = this.n41 * b + this.n42 * c + this.n43 * d + this.n44 * f;
     return a;
   },
-  rotateAxis: function(a) {
+  rotateAxis: function (a) {
     var b = a.x,
       c = a.y,
       d = a.z;
@@ -980,7 +980,7 @@ THREE.Matrix4.prototype = {
     a.normalize();
     return a;
   },
-  crossVector: function(a) {
+  crossVector: function (a) {
     var b = new THREE.Vector4();
     b.x = this.n11 * a.x + this.n12 * a.y + this.n13 * a.z + this.n14 * a.w;
     b.y = this.n21 * a.x + this.n22 * a.y + this.n23 * a.z + this.n24 * a.w;
@@ -990,7 +990,7 @@ THREE.Matrix4.prototype = {
       : 1;
     return b;
   },
-  determinant: function() {
+  determinant: function () {
     var a = this.n11,
       b = this.n12,
       c = this.n13,
@@ -1034,7 +1034,7 @@ THREE.Matrix4.prototype = {
       a * e * j * k
     );
   },
-  transpose: function() {
+  transpose: function () {
     var a;
     a = this.n21;
     this.n21 = this.n12;
@@ -1056,7 +1056,7 @@ THREE.Matrix4.prototype = {
     this.n43 = a;
     return this;
   },
-  clone: function() {
+  clone: function () {
     var a = new THREE.Matrix4();
     a.n11 = this.n11;
     a.n12 = this.n12;
@@ -1076,7 +1076,7 @@ THREE.Matrix4.prototype = {
     a.n44 = this.n44;
     return a;
   },
-  flatten: function() {
+  flatten: function () {
     this.flat[0] = this.n11;
     this.flat[1] = this.n21;
     this.flat[2] = this.n31;
@@ -1095,7 +1095,7 @@ THREE.Matrix4.prototype = {
     this.flat[15] = this.n44;
     return this.flat;
   },
-  flattenToArray: function(a) {
+  flattenToArray: function (a) {
     a[0] = this.n11;
     a[1] = this.n21;
     a[2] = this.n31;
@@ -1114,7 +1114,7 @@ THREE.Matrix4.prototype = {
     a[15] = this.n44;
     return a;
   },
-  flattenToArrayOffset: function(a, b) {
+  flattenToArrayOffset: function (a, b) {
     a[b] = this.n11;
     a[b + 1] = this.n21;
     a[b + 2] = this.n31;
@@ -1133,33 +1133,33 @@ THREE.Matrix4.prototype = {
     a[b + 15] = this.n44;
     return a;
   },
-  setTranslation: function(a, b, c) {
+  setTranslation: function (a, b, c) {
     this.set(1, 0, 0, a, 0, 1, 0, b, 0, 0, 1, c, 0, 0, 0, 1);
     return this;
   },
-  setScale: function(a, b, c) {
+  setScale: function (a, b, c) {
     this.set(a, 0, 0, 0, 0, b, 0, 0, 0, 0, c, 0, 0, 0, 0, 1);
     return this;
   },
-  setRotationX: function(a) {
+  setRotationX: function (a) {
     var b = Math.cos(a),
       a = Math.sin(a);
     this.set(1, 0, 0, 0, 0, b, -a, 0, 0, a, b, 0, 0, 0, 0, 1);
     return this;
   },
-  setRotationY: function(a) {
+  setRotationY: function (a) {
     var b = Math.cos(a),
       a = Math.sin(a);
     this.set(b, 0, a, 0, 0, 1, 0, 0, -a, 0, b, 0, 0, 0, 0, 1);
     return this;
   },
-  setRotationZ: function(a) {
+  setRotationZ: function (a) {
     var b = Math.cos(a),
       a = Math.sin(a);
     this.set(b, -a, 0, 0, a, b, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1);
     return this;
   },
-  setRotationAxis: function(a, b) {
+  setRotationAxis: function (a, b) {
     var c = Math.cos(b),
       d = Math.sin(b),
       f = 1 - c,
@@ -1188,25 +1188,25 @@ THREE.Matrix4.prototype = {
     );
     return this;
   },
-  setPosition: function(a) {
+  setPosition: function (a) {
     this.n14 = a.x;
     this.n24 = a.y;
     this.n34 = a.z;
     return this;
   },
-  getPosition: function() {
+  getPosition: function () {
     return THREE.Matrix4.__v1.set(this.n14, this.n24, this.n34);
   },
-  getColumnX: function() {
+  getColumnX: function () {
     return THREE.Matrix4.__v1.set(this.n11, this.n21, this.n31);
   },
-  getColumnY: function() {
+  getColumnY: function () {
     return THREE.Matrix4.__v1.set(this.n12, this.n22, this.n32);
   },
-  getColumnZ: function() {
+  getColumnZ: function () {
     return THREE.Matrix4.__v1.set(this.n13, this.n23, this.n33);
   },
-  getInverse: function(a) {
+  getInverse: function (a) {
     var b = a.n11,
       c = a.n12,
       d = a.n13,
@@ -1258,7 +1258,7 @@ THREE.Matrix4.prototype = {
     this.multiplyScalar(1 / a.determinant());
     return this;
   },
-  setRotationFromEuler: function(a, b) {
+  setRotationFromEuler: function (a, b) {
     var c = a.x,
       d = a.y,
       f = a.z,
@@ -1361,7 +1361,7 @@ THREE.Matrix4.prototype = {
     }
     return this;
   },
-  setRotationFromQuaternion: function(a) {
+  setRotationFromQuaternion: function (a) {
     var b = a.x,
       c = a.y,
       d = a.z,
@@ -1389,7 +1389,7 @@ THREE.Matrix4.prototype = {
     this.n33 = 1 - (a + l);
     return this;
   },
-  scale: function(a) {
+  scale: function (a) {
     var b = a.x,
       c = a.y,
       a = a.z;
@@ -1407,7 +1407,7 @@ THREE.Matrix4.prototype = {
     this.n43 *= a;
     return this;
   },
-  compose: function(a, b, c) {
+  compose: function (a, b, c) {
     var d = THREE.Matrix4.__m1,
       f = THREE.Matrix4.__m2;
     d.identity();
@@ -1419,7 +1419,7 @@ THREE.Matrix4.prototype = {
     this.n34 = a.z;
     return this;
   },
-  decompose: function(a, b, c) {
+  decompose: function (a, b, c) {
     var d = THREE.Matrix4.__v1,
       f = THREE.Matrix4.__v2,
       e = THREE.Matrix4.__v3;
@@ -1449,13 +1449,13 @@ THREE.Matrix4.prototype = {
     b.setFromRotationMatrix(d);
     return [a, b, c];
   },
-  extractPosition: function(a) {
+  extractPosition: function (a) {
     this.n14 = a.n14;
     this.n24 = a.n24;
     this.n34 = a.n34;
     return this;
   },
-  extractRotation: function(a) {
+  extractRotation: function (a) {
     var b = THREE.Matrix4.__v1,
       c = 1 / b.set(a.n11, a.n21, a.n31).length(),
       d = 1 / b.set(a.n12, a.n22, a.n32).length(),
@@ -1472,7 +1472,7 @@ THREE.Matrix4.prototype = {
     return this;
   },
 };
-THREE.Matrix4.makeInvert3x3 = function(a) {
+THREE.Matrix4.makeInvert3x3 = function (a) {
   var b = a.m33,
     c = b.m,
     d = a.n33 * a.n22 - a.n32 * a.n23,
@@ -1499,7 +1499,7 @@ THREE.Matrix4.makeInvert3x3 = function(a) {
   c[8] = a * i;
   return b;
 };
-THREE.Matrix4.makeFrustum = function(a, b, c, d, f, e) {
+THREE.Matrix4.makeFrustum = function (a, b, c, d, f, e) {
   var g;
   g = new THREE.Matrix4();
   g.n11 = (2 * f) / (b - a);
@@ -1520,13 +1520,13 @@ THREE.Matrix4.makeFrustum = function(a, b, c, d, f, e) {
   g.n44 = 0;
   return g;
 };
-THREE.Matrix4.makePerspective = function(a, b, c, d) {
+THREE.Matrix4.makePerspective = function (a, b, c, d) {
   var f,
     a = c * Math.tan((a * Math.PI) / 360);
   f = -a;
   return THREE.Matrix4.makeFrustum(f * b, a * b, f, a, c, d);
 };
-THREE.Matrix4.makeOrtho = function(a, b, c, d, f, e) {
+THREE.Matrix4.makeOrtho = function (a, b, c, d, f, e) {
   var g, h, m, l;
   g = new THREE.Matrix4();
   h = b - a;
@@ -1555,7 +1555,7 @@ THREE.Matrix4.__v2 = new THREE.Vector3();
 THREE.Matrix4.__v3 = new THREE.Vector3();
 THREE.Matrix4.__m1 = new THREE.Matrix4();
 THREE.Matrix4.__m2 = new THREE.Matrix4();
-THREE.Object3D = function() {
+THREE.Object3D = function () {
   this.name = '';
   this.id = THREE.Object3DCount++;
   this.parent = void 0;
@@ -1583,24 +1583,24 @@ THREE.Object3D = function() {
 };
 THREE.Object3D.prototype = {
   constructor: THREE.Object3D,
-  translate: function(a, b) {
+  translate: function (a, b) {
     this.matrix.rotateAxis(b);
     this.position.addSelf(b.multiplyScalar(a));
   },
-  translateX: function(a) {
+  translateX: function (a) {
     this.translate(a, this._vector.set(1, 0, 0));
   },
-  translateY: function(a) {
+  translateY: function (a) {
     this.translate(a, this._vector.set(0, 1, 0));
   },
-  translateZ: function(a) {
+  translateZ: function (a) {
     this.translate(a, this._vector.set(0, 0, 1));
   },
-  lookAt: function(a) {
+  lookAt: function (a) {
     this.matrix.lookAt(a, this.position, this.up);
     this.rotationAutoUpdate && this.rotation.setRotationFromMatrix(this.matrix);
   },
-  add: function(a) {
+  add: function (a) {
     if (this.children.indexOf(a) === -1) {
       a.parent !== void 0 && a.parent.remove(a);
       a.parent = this;
@@ -1609,7 +1609,7 @@ THREE.Object3D.prototype = {
       b !== void 0 && b instanceof THREE.Scene && b.addObject(a);
     }
   },
-  remove: function(a) {
+  remove: function (a) {
     var b = this.children.indexOf(a);
     if (b !== -1) {
       a.parent = void 0;
@@ -1618,7 +1618,7 @@ THREE.Object3D.prototype = {
       b !== void 0 && b instanceof THREE.Scene && b.removeObject(a);
     }
   },
-  getChildByName: function(a, b) {
+  getChildByName: function (a, b) {
     var c, d, f;
     c = 0;
     for (d = this.children.length; c < d; c++) {
@@ -1627,7 +1627,7 @@ THREE.Object3D.prototype = {
       if (b && ((f = f.getChildByName(a, b)), f !== void 0)) return f;
     }
   },
-  updateMatrix: function() {
+  updateMatrix: function () {
     this.matrix.setPosition(this.position);
     this.useQuaternion
       ? this.matrix.setRotationFromQuaternion(this.quaternion)
@@ -1640,7 +1640,7 @@ THREE.Object3D.prototype = {
         ));
     this.matrixWorldNeedsUpdate = !0;
   },
-  updateMatrixWorld: function(a) {
+  updateMatrixWorld: function (a) {
     this.matrixAutoUpdate && this.updateMatrix();
     if (this.matrixWorldNeedsUpdate || a)
       this.parent
@@ -1653,7 +1653,7 @@ THREE.Object3D.prototype = {
   },
 };
 THREE.Object3DCount = 0;
-THREE.Projector = function() {
+THREE.Projector = function () {
   function a() {
     var a = (g[e] = g[e] || new THREE.RenderableObject());
     e++;
@@ -1718,7 +1718,7 @@ THREE.Projector = function() {
     ],
     E = new THREE.Vector4(),
     N = new THREE.Vector4();
-  this.computeFrustum = function(a) {
+  this.computeFrustum = function (a) {
     r[0].set(a.n41 - a.n11, a.n42 - a.n12, a.n43 - a.n13, a.n44 - a.n14);
     r[1].set(a.n41 + a.n11, a.n42 + a.n12, a.n43 + a.n13, a.n44 + a.n14);
     r[2].set(a.n41 + a.n21, a.n42 + a.n22, a.n43 + a.n23, a.n44 + a.n24);
@@ -1730,19 +1730,19 @@ THREE.Projector = function() {
       b.divideScalar(Math.sqrt(b.x * b.x + b.y * b.y + b.z * b.z));
     }
   };
-  this.projectVector = function(a, b) {
+  this.projectVector = function (a, b) {
     b.matrixWorldInverse.getInverse(b.matrixWorld);
     D.multiply(b.projectionMatrix, b.matrixWorldInverse);
     D.multiplyVector3(a);
     return a;
   };
-  this.unprojectVector = function(a, b) {
+  this.unprojectVector = function (a, b) {
     b.projectionMatrixInverse.getInverse(b.projectionMatrix);
     D.multiply(b.matrixWorld, b.projectionMatrixInverse);
     D.multiplyVector3(a);
     return a;
   };
-  this.pickingRay = function(a, b) {
+  this.pickingRay = function (a, b) {
     var c;
     a.z = -1;
     c = new THREE.Vector3(a.x, a.y, 1);
@@ -1751,12 +1751,12 @@ THREE.Projector = function() {
     c.subSelf(a).normalize();
     return new THREE.Ray(a, c);
   };
-  this.projectGraph = function(b, d) {
+  this.projectGraph = function (b, d) {
     e = 0;
     w.objects.length = 0;
     w.sprites.length = 0;
     w.lights.length = 0;
-    var g = function(b) {
+    var g = function (b) {
       if (b.visible !== !1) {
         var c;
         if ((c = b instanceof THREE.Mesh || b instanceof THREE.Line))
@@ -1802,7 +1802,7 @@ THREE.Projector = function() {
     d && w.objects.sort(c);
     return w;
   };
-  this.projectScene = function(a, e, f) {
+  this.projectScene = function (a, e, f) {
     var g = e.near,
       r = e.far,
       F,
@@ -2000,26 +2000,26 @@ THREE.Projector = function() {
     return w;
   };
 };
-THREE.Quaternion = function(a, b, c, d) {
+THREE.Quaternion = function (a, b, c, d) {
   this.set(a || 0, b || 0, c || 0, d !== void 0 ? d : 1);
 };
 THREE.Quaternion.prototype = {
   constructor: THREE.Quaternion,
-  set: function(a, b, c, d) {
+  set: function (a, b, c, d) {
     this.x = a;
     this.y = b;
     this.z = c;
     this.w = d;
     return this;
   },
-  copy: function(a) {
+  copy: function (a) {
     this.x = a.x;
     this.y = a.y;
     this.z = a.z;
     this.w = a.w;
     return this;
   },
-  setFromEuler: function(a) {
+  setFromEuler: function (a) {
     var b = Math.PI / 360,
       c = a.x * b,
       d = a.y * b,
@@ -2038,7 +2038,7 @@ THREE.Quaternion.prototype = {
     this.z = a * f * e - d * b * c;
     return this;
   },
-  setFromAxisAngle: function(a, b) {
+  setFromAxisAngle: function (a, b) {
     var c = b / 2,
       d = Math.sin(c);
     this.x = a.x * d;
@@ -2047,7 +2047,7 @@ THREE.Quaternion.prototype = {
     this.w = Math.cos(c);
     return this;
   },
-  setFromRotationMatrix: function(a) {
+  setFromRotationMatrix: function (a) {
     var b = Math.pow(a.determinant(), 1 / 3);
     this.w = Math.sqrt(Math.max(0, b + a.n11 + a.n22 + a.n33)) / 2;
     this.x = Math.sqrt(Math.max(0, b + a.n11 - a.n22 - a.n33)) / 2;
@@ -2059,24 +2059,24 @@ THREE.Quaternion.prototype = {
     this.normalize();
     return this;
   },
-  calculateW: function() {
+  calculateW: function () {
     this.w = -Math.sqrt(
       Math.abs(1 - this.x * this.x - this.y * this.y - this.z * this.z),
     );
     return this;
   },
-  inverse: function() {
+  inverse: function () {
     this.x *= -1;
     this.y *= -1;
     this.z *= -1;
     return this;
   },
-  length: function() {
+  length: function () {
     return Math.sqrt(
       this.x * this.x + this.y * this.y + this.z * this.z + this.w * this.w,
     );
   },
-  normalize: function() {
+  normalize: function () {
     var a = Math.sqrt(
       this.x * this.x + this.y * this.y + this.z * this.z + this.w * this.w,
     );
@@ -2089,7 +2089,7 @@ THREE.Quaternion.prototype = {
         (this.w *= a));
     return this;
   },
-  multiplySelf: function(a) {
+  multiplySelf: function (a) {
     var b = this.x,
       c = this.y,
       d = this.z,
@@ -2104,14 +2104,14 @@ THREE.Quaternion.prototype = {
     this.w = f * a - b * e - c * g - d * h;
     return this;
   },
-  multiply: function(a, b) {
+  multiply: function (a, b) {
     this.x = a.x * b.w + a.y * b.z - a.z * b.y + a.w * b.x;
     this.y = -a.x * b.z + a.y * b.w + a.z * b.x + a.w * b.y;
     this.z = a.x * b.y - a.y * b.x + a.z * b.w + a.w * b.z;
     this.w = -a.x * b.x - a.y * b.y - a.z * b.z + a.w * b.w;
     return this;
   },
-  multiplyVector3: function(a, b) {
+  multiplyVector3: function (a, b) {
     b || (b = a);
     var c = a.x,
       d = a.y,
@@ -2130,7 +2130,7 @@ THREE.Quaternion.prototype = {
     return b;
   },
 };
-THREE.Quaternion.slerp = function(a, b, c, d) {
+THREE.Quaternion.slerp = function (a, b, c, d) {
   var f = a.w * b.w + a.x * b.x + a.y * b.y + a.z * b.z;
   f < 0
     ? ((c.w = -b.w), (c.x = -b.x), (c.y = -b.y), (c.z = -b.z), (f = -f))
@@ -2155,10 +2155,10 @@ THREE.Quaternion.slerp = function(a, b, c, d) {
   c.z = a.z * b + c.z * d;
   return c;
 };
-THREE.Vertex = function(a) {
+THREE.Vertex = function (a) {
   this.position = a || new THREE.Vector3();
 };
-THREE.Face3 = function(a, b, c, d, f, e) {
+THREE.Face3 = function (a, b, c, d, f, e) {
   this.a = a;
   this.b = b;
   this.c = c;
@@ -2170,7 +2170,7 @@ THREE.Face3 = function(a, b, c, d, f, e) {
   this.materialIndex = e;
   this.centroid = new THREE.Vector3();
 };
-THREE.Face4 = function(a, b, c, d, f, e, g) {
+THREE.Face4 = function (a, b, c, d, f, e, g) {
   this.a = a;
   this.b = b;
   this.c = c;
@@ -2183,27 +2183,27 @@ THREE.Face4 = function(a, b, c, d, f, e, g) {
   this.materialIndex = g;
   this.centroid = new THREE.Vector3();
 };
-THREE.UV = function(a, b) {
+THREE.UV = function (a, b) {
   this.u = a || 0;
   this.v = b || 0;
 };
 THREE.UV.prototype = {
   constructor: THREE.UV,
-  set: function(a, b) {
+  set: function (a, b) {
     this.u = a;
     this.v = b;
     return this;
   },
-  copy: function(a) {
+  copy: function (a) {
     this.u = a.u;
     this.v = a.v;
     return this;
   },
-  clone: function() {
+  clone: function () {
     return new THREE.UV(this.u, this.v);
   },
 };
-THREE.Geometry = function() {
+THREE.Geometry = function () {
   this.id = THREE.GeometryCount++;
   this.vertices = [];
   this.colors = [];
@@ -2220,7 +2220,7 @@ THREE.Geometry = function() {
 };
 THREE.Geometry.prototype = {
   constructor: THREE.Geometry,
-  applyMatrix: function(a) {
+  applyMatrix: function (a) {
     var b = new THREE.Matrix4();
     b.extractRotation(a, new THREE.Vector3(1, 1, 1));
     for (var c = 0, d = this.vertices.length; c < d; c++)
@@ -2234,7 +2234,7 @@ THREE.Geometry.prototype = {
       a.multiplyVector3(f.centroid);
     }
   },
-  computeCentroids: function() {
+  computeCentroids: function () {
     var a, b, c;
     a = 0;
     for (b = this.faces.length; a < b; a++)
@@ -2252,7 +2252,7 @@ THREE.Geometry.prototype = {
             c.centroid.addSelf(this.vertices[c.d].position),
             c.centroid.divideScalar(4));
   },
-  computeFaceNormals: function() {
+  computeFaceNormals: function () {
     var a,
       b,
       c,
@@ -2273,7 +2273,7 @@ THREE.Geometry.prototype = {
         g.isZero() || g.normalize(),
         c.normal.copy(g);
   },
-  computeVertexNormals: function() {
+  computeVertexNormals: function () {
     var a, b, c, d;
     if (this.__tmpVertices === void 0) {
       d = this.__tmpVertices = Array(this.vertices.length);
@@ -2326,7 +2326,7 @@ THREE.Geometry.prototype = {
             c.vertexNormals[2].copy(d[c.c]),
             c.vertexNormals[3].copy(d[c.d]));
   },
-  computeTangents: function() {
+  computeTangents: function () {
     function a(a, b, c, d, e, f, D) {
       h = a.vertices[b].position;
       m = a.vertices[c].position;
@@ -2413,7 +2413,7 @@ THREE.Geometry.prototype = {
     }
     this.hasTangents = !0;
   },
-  computeBoundingBox: function() {
+  computeBoundingBox: function () {
     var a;
     if (this.vertices.length > 0) {
       this.boundingBox = {
@@ -2438,12 +2438,12 @@ THREE.Geometry.prototype = {
       }
     }
   },
-  computeBoundingSphere: function() {
+  computeBoundingSphere: function () {
     for (var a = 0, b = 0, c = this.vertices.length; b < c; b++)
       a = Math.max(a, this.vertices[b].position.length());
     this.boundingSphere = { radius: a };
   },
-  mergeVertices: function() {
+  mergeVertices: function () {
     var a = {},
       b = [],
       c = [],
@@ -2472,7 +2472,7 @@ THREE.Geometry.prototype = {
   },
 };
 THREE.GeometryCount = 0;
-THREE.Camera = function() {
+THREE.Camera = function () {
   if (arguments.length)
     return (
       console.warn(
@@ -2492,11 +2492,11 @@ THREE.Camera = function() {
 };
 THREE.Camera.prototype = new THREE.Object3D();
 THREE.Camera.prototype.constructor = THREE.Camera;
-THREE.Camera.prototype.lookAt = function(a) {
+THREE.Camera.prototype.lookAt = function (a) {
   this.matrix.lookAt(this.position, a, this.up);
   this.rotationAutoUpdate && this.rotation.setRotationFromMatrix(this.matrix);
 };
-THREE.OrthographicCamera = function(a, b, c, d, f, e) {
+THREE.OrthographicCamera = function (a, b, c, d, f, e) {
   THREE.Camera.call(this);
   this.left = a;
   this.right = b;
@@ -2508,7 +2508,7 @@ THREE.OrthographicCamera = function(a, b, c, d, f, e) {
 };
 THREE.OrthographicCamera.prototype = new THREE.Camera();
 THREE.OrthographicCamera.prototype.constructor = THREE.OrthographicCamera;
-THREE.OrthographicCamera.prototype.updateProjectionMatrix = function() {
+THREE.OrthographicCamera.prototype.updateProjectionMatrix = function () {
   this.projectionMatrix = THREE.Matrix4.makeOrtho(
     this.left,
     this.right,
@@ -2518,7 +2518,7 @@ THREE.OrthographicCamera.prototype.updateProjectionMatrix = function() {
     this.far,
   );
 };
-THREE.PerspectiveCamera = function(a, b, c, d) {
+THREE.PerspectiveCamera = function (a, b, c, d) {
   THREE.Camera.call(this);
   this.fov = a !== void 0 ? a : 50;
   this.aspect = b !== void 0 ? b : 1;
@@ -2528,12 +2528,12 @@ THREE.PerspectiveCamera = function(a, b, c, d) {
 };
 THREE.PerspectiveCamera.prototype = new THREE.Camera();
 THREE.PerspectiveCamera.prototype.constructor = THREE.PerspectiveCamera;
-THREE.PerspectiveCamera.prototype.setLens = function(a, b) {
+THREE.PerspectiveCamera.prototype.setLens = function (a, b) {
   this.fov = 2 * Math.atan((b !== void 0 ? b : 43.25) / (a * 2));
   this.fov *= 180 / Math.PI;
   this.updateProjectionMatrix();
 };
-THREE.PerspectiveCamera.prototype.setViewOffset = function(a, b, c, d, f, e) {
+THREE.PerspectiveCamera.prototype.setViewOffset = function (a, b, c, d, f, e) {
   this.fullWidth = a;
   this.fullHeight = b;
   this.x = c;
@@ -2542,7 +2542,7 @@ THREE.PerspectiveCamera.prototype.setViewOffset = function(a, b, c, d, f, e) {
   this.height = e;
   this.updateProjectionMatrix();
 };
-THREE.PerspectiveCamera.prototype.updateProjectionMatrix = function() {
+THREE.PerspectiveCamera.prototype.updateProjectionMatrix = function () {
   if (this.fullWidth) {
     var a = this.fullWidth / this.fullHeight,
       b = Math.tan((this.fov * Math.PI) / 360) * this.near,
@@ -2566,19 +2566,19 @@ THREE.PerspectiveCamera.prototype.updateProjectionMatrix = function() {
       this.far,
     );
 };
-THREE.Light = function(a) {
+THREE.Light = function (a) {
   THREE.Object3D.call(this);
   this.color = new THREE.Color(a);
 };
 THREE.Light.prototype = new THREE.Object3D();
 THREE.Light.prototype.constructor = THREE.Light;
 THREE.Light.prototype.supr = THREE.Object3D.prototype;
-THREE.AmbientLight = function(a) {
+THREE.AmbientLight = function (a) {
   THREE.Light.call(this, a);
 };
 THREE.AmbientLight.prototype = new THREE.Light();
 THREE.AmbientLight.prototype.constructor = THREE.AmbientLight;
-THREE.DirectionalLight = function(a, b, c) {
+THREE.DirectionalLight = function (a, b, c) {
   THREE.Light.call(this, a);
   this.position = new THREE.Vector3(0, 1, 0);
   this.intensity = b !== void 0 ? b : 1;
@@ -2586,7 +2586,7 @@ THREE.DirectionalLight = function(a, b, c) {
 };
 THREE.DirectionalLight.prototype = new THREE.Light();
 THREE.DirectionalLight.prototype.constructor = THREE.DirectionalLight;
-THREE.PointLight = function(a, b, c) {
+THREE.PointLight = function (a, b, c) {
   THREE.Light.call(this, a);
   this.position = new THREE.Vector3(0, 0, 0);
   this.intensity = b !== void 0 ? b : 1;
@@ -2594,7 +2594,7 @@ THREE.PointLight = function(a, b, c) {
 };
 THREE.PointLight.prototype = new THREE.Light();
 THREE.PointLight.prototype.constructor = THREE.PointLight;
-THREE.Material = function(a) {
+THREE.Material = function (a) {
   this.name = '';
   this.id = THREE.MaterialCount++;
   a = a || {};
@@ -2623,7 +2623,7 @@ THREE.AdditiveBlending = 1;
 THREE.SubtractiveBlending = 2;
 THREE.MultiplyBlending = 3;
 THREE.AdditiveAlphaBlending = 4;
-THREE.LineBasicMaterial = function(a) {
+THREE.LineBasicMaterial = function (a) {
   THREE.Material.call(this, a);
   a = a || {};
   this.color =
@@ -2636,7 +2636,7 @@ THREE.LineBasicMaterial = function(a) {
 };
 THREE.LineBasicMaterial.prototype = new THREE.Material();
 THREE.LineBasicMaterial.prototype.constructor = THREE.LineBasicMaterial;
-THREE.MeshBasicMaterial = function(a) {
+THREE.MeshBasicMaterial = function (a) {
   THREE.Material.call(this, a);
   a = a || {};
   this.color =
@@ -2663,7 +2663,7 @@ THREE.MeshBasicMaterial = function(a) {
 };
 THREE.MeshBasicMaterial.prototype = new THREE.Material();
 THREE.MeshBasicMaterial.prototype.constructor = THREE.MeshBasicMaterial;
-THREE.MeshLambertMaterial = function(a) {
+THREE.MeshLambertMaterial = function (a) {
   THREE.Material.call(this, a);
   a = a || {};
   this.color =
@@ -2692,7 +2692,7 @@ THREE.MeshLambertMaterial = function(a) {
 };
 THREE.MeshLambertMaterial.prototype = new THREE.Material();
 THREE.MeshLambertMaterial.prototype.constructor = THREE.MeshLambertMaterial;
-THREE.MeshPhongMaterial = function(a) {
+THREE.MeshPhongMaterial = function (a) {
   THREE.Material.call(this, a);
   a = a || {};
   this.color =
@@ -2728,7 +2728,7 @@ THREE.MeshPhongMaterial = function(a) {
 };
 THREE.MeshPhongMaterial.prototype = new THREE.Material();
 THREE.MeshPhongMaterial.prototype.constructor = THREE.MeshPhongMaterial;
-THREE.MeshDepthMaterial = function(a) {
+THREE.MeshDepthMaterial = function (a) {
   THREE.Material.call(this, a);
   a = a || {};
   this.shading = a.shading !== void 0 ? a.shading : THREE.SmoothShading;
@@ -2738,7 +2738,7 @@ THREE.MeshDepthMaterial = function(a) {
 };
 THREE.MeshDepthMaterial.prototype = new THREE.Material();
 THREE.MeshDepthMaterial.prototype.constructor = THREE.MeshDepthMaterial;
-THREE.MeshNormalMaterial = function(a) {
+THREE.MeshNormalMaterial = function (a) {
   THREE.Material.call(this, a);
   a = a || {};
   this.shading = a.shading ? a.shading : THREE.FlatShading;
@@ -2747,8 +2747,8 @@ THREE.MeshNormalMaterial = function(a) {
 };
 THREE.MeshNormalMaterial.prototype = new THREE.Material();
 THREE.MeshNormalMaterial.prototype.constructor = THREE.MeshNormalMaterial;
-THREE.MeshFaceMaterial = function() {};
-THREE.ParticleBasicMaterial = function(a) {
+THREE.MeshFaceMaterial = function () {};
+THREE.ParticleBasicMaterial = function (a) {
   THREE.Material.call(this, a);
   a = a || {};
   this.color =
@@ -2761,17 +2761,17 @@ THREE.ParticleBasicMaterial = function(a) {
 };
 THREE.ParticleBasicMaterial.prototype = new THREE.Material();
 THREE.ParticleBasicMaterial.prototype.constructor = THREE.ParticleBasicMaterial;
-THREE.ParticleCanvasMaterial = function(a) {
+THREE.ParticleCanvasMaterial = function (a) {
   THREE.Material.call(this, a);
   a = a || {};
   this.color =
     a.color !== void 0 ? new THREE.Color(a.color) : new THREE.Color(16777215);
-  this.program = a.program !== void 0 ? a.program : function() {};
+  this.program = a.program !== void 0 ? a.program : function () {};
 };
 THREE.ParticleCanvasMaterial.prototype = new THREE.Material();
 THREE.ParticleCanvasMaterial.prototype.constructor =
   THREE.ParticleCanvasMaterial;
-THREE.Texture = function(a, b, c, d, f, e) {
+THREE.Texture = function (a, b, c, d, f, e) {
   this.id = THREE.TextureCount++;
   this.image = a;
   this.mapping = b !== void 0 ? b : new THREE.UVMapping();
@@ -2786,7 +2786,7 @@ THREE.Texture = function(a, b, c, d, f, e) {
 };
 THREE.Texture.prototype = {
   constructor: THREE.Texture,
-  clone: function() {
+  clone: function () {
     var a = new THREE.Texture(
       this.image,
       this.mapping,
@@ -2803,13 +2803,13 @@ THREE.Texture.prototype = {
 THREE.TextureCount = 0;
 THREE.MultiplyOperation = 0;
 THREE.MixOperation = 1;
-THREE.CubeReflectionMapping = function() {};
-THREE.CubeRefractionMapping = function() {};
-THREE.LatitudeReflectionMapping = function() {};
-THREE.LatitudeRefractionMapping = function() {};
-THREE.SphericalReflectionMapping = function() {};
-THREE.SphericalRefractionMapping = function() {};
-THREE.UVMapping = function() {};
+THREE.CubeReflectionMapping = function () {};
+THREE.CubeRefractionMapping = function () {};
+THREE.LatitudeReflectionMapping = function () {};
+THREE.LatitudeRefractionMapping = function () {};
+THREE.SphericalReflectionMapping = function () {};
+THREE.SphericalRefractionMapping = function () {};
+THREE.UVMapping = function () {};
 THREE.RepeatWrapping = 0;
 THREE.ClampToEdgeWrapping = 1;
 THREE.MirroredRepeatWrapping = 2;
@@ -2831,13 +2831,13 @@ THREE.RGBFormat = 17;
 THREE.RGBAFormat = 18;
 THREE.LuminanceFormat = 19;
 THREE.LuminanceAlphaFormat = 20;
-THREE.Particle = function(a) {
+THREE.Particle = function (a) {
   THREE.Object3D.call(this);
   this.material = a;
 };
 THREE.Particle.prototype = new THREE.Object3D();
 THREE.Particle.prototype.constructor = THREE.Particle;
-THREE.Line = function(a, b, c) {
+THREE.Line = function (a, b, c) {
   THREE.Object3D.call(this);
   this.geometry = a;
   this.material = b;
@@ -2849,7 +2849,7 @@ THREE.LineStrip = 0;
 THREE.LinePieces = 1;
 THREE.Line.prototype = new THREE.Object3D();
 THREE.Line.prototype.constructor = THREE.Line;
-THREE.Mesh = function(a, b) {
+THREE.Mesh = function (a, b) {
   THREE.Object3D.call(this);
   this.geometry = a;
   this.material = b;
@@ -2876,7 +2876,7 @@ THREE.Mesh = function(a, b) {
 THREE.Mesh.prototype = new THREE.Object3D();
 THREE.Mesh.prototype.constructor = THREE.Mesh;
 THREE.Mesh.prototype.supr = THREE.Object3D.prototype;
-THREE.Mesh.prototype.getMorphTargetIndexByName = function(a) {
+THREE.Mesh.prototype.getMorphTargetIndexByName = function (a) {
   if (this.morphTargetDictionary[a] !== void 0)
     return this.morphTargetDictionary[a];
   console.log(
@@ -2886,7 +2886,7 @@ THREE.Mesh.prototype.getMorphTargetIndexByName = function(a) {
   );
   return 0;
 };
-THREE.Bone = function(a) {
+THREE.Bone = function (a) {
   THREE.Object3D.call(this);
   this.skin = a;
   this.skinMatrix = new THREE.Matrix4();
@@ -2894,7 +2894,7 @@ THREE.Bone = function(a) {
 THREE.Bone.prototype = new THREE.Object3D();
 THREE.Bone.prototype.constructor = THREE.Bone;
 THREE.Bone.prototype.supr = THREE.Object3D.prototype;
-THREE.Bone.prototype.update = function(a, b) {
+THREE.Bone.prototype.update = function (a, b) {
   this.matrixAutoUpdate && (b |= this.updateMatrix());
   if (b || this.matrixWorldNeedsUpdate)
     a
@@ -2906,7 +2906,7 @@ THREE.Bone.prototype.update = function(a, b) {
     d = this.children.length;
   for (c = 0; c < d; c++) this.children[c].update(this.skinMatrix, b);
 };
-THREE.Sprite = function(a) {
+THREE.Sprite = function (a) {
   THREE.Object3D.call(this);
   this.color =
     a.color !== void 0 ? new THREE.Color(a.color) : new THREE.Color(16777215);
@@ -2937,7 +2937,7 @@ THREE.Sprite = function(a) {
 };
 THREE.Sprite.prototype = new THREE.Object3D();
 THREE.Sprite.prototype.constructor = THREE.Sprite;
-THREE.Sprite.prototype.updateMatrix = function() {
+THREE.Sprite.prototype.updateMatrix = function () {
   this.matrix.setPosition(this.position);
   this.rotation3d.set(0, 0, this.rotation);
   this.matrix.setRotationFromEuler(this.rotation3d);
@@ -2956,7 +2956,7 @@ THREE.SpriteAlignment.centerRight = new THREE.Vector2(-1, 0);
 THREE.SpriteAlignment.bottomLeft = new THREE.Vector2(1, 1);
 THREE.SpriteAlignment.bottomCenter = new THREE.Vector2(0, 1);
 THREE.SpriteAlignment.bottomRight = new THREE.Vector2(-1, 1);
-THREE.Scene = function() {
+THREE.Scene = function () {
   THREE.Object3D.call(this);
   this.overrideMaterial = this.fog = null;
   this.matrixAutoUpdate = !1;
@@ -2967,7 +2967,7 @@ THREE.Scene = function() {
 };
 THREE.Scene.prototype = new THREE.Object3D();
 THREE.Scene.prototype.constructor = THREE.Scene;
-THREE.Scene.prototype.addObject = function(a) {
+THREE.Scene.prototype.addObject = function (a) {
   if (a instanceof THREE.Light)
     this.lights.indexOf(a) === -1 && this.lights.push(a);
   else if (
@@ -2981,7 +2981,7 @@ THREE.Scene.prototype.addObject = function(a) {
   }
   for (b = 0; b < a.children.length; b++) this.addObject(a.children[b]);
 };
-THREE.Scene.prototype.removeObject = function(a) {
+THREE.Scene.prototype.removeObject = function (a) {
   if (a instanceof THREE.Light) {
     var b = this.lights.indexOf(a);
     b !== -1 && this.lights.splice(b, 1);
@@ -2995,7 +2995,7 @@ THREE.Scene.prototype.removeObject = function(a) {
         b !== -1 && this.__objectsAdded.splice(b, 1)));
   for (b = 0; b < a.children.length; b++) this.removeObject(a.children[b]);
 };
-THREE.CanvasRenderer = function(a) {
+THREE.CanvasRenderer = function (a) {
   function b(a) {
     if (C != a) k.globalAlpha = C = a;
   }
@@ -3107,7 +3107,7 @@ THREE.CanvasRenderer = function(a) {
   this.domElement = j;
   this.sortElements = this.sortObjects = this.autoClear = !0;
   this.info = { render: { vertices: 0, faces: 0 } };
-  this.setSize = function(a, b) {
+  this.setSize = function (a, b) {
     i = a;
     n = b;
     o = Math.floor(i / 2);
@@ -3120,17 +3120,17 @@ THREE.CanvasRenderer = function(a) {
     Q = 0;
     D = z = F = w = O = null;
   };
-  this.setClearColor = function(a, b) {
+  this.setClearColor = function (a, b) {
     s.copy(a);
     K = b;
     Z.set(-o, -p, o, p);
   };
-  this.setClearColorHex = function(a, b) {
+  this.setClearColorHex = function (a, b) {
     s.setHex(a);
     K = b;
     Z.set(-o, -p, o, p);
   };
-  this.clear = function() {
+  this.clear = function () {
     k.setTransform(1, 0, 0, -1, o, p);
     Z.isEmpty() ||
       (Z.minSelf(ma),
@@ -3164,7 +3164,7 @@ THREE.CanvasRenderer = function(a) {
         )),
       Z.empty());
   };
-  this.render = function(a, j) {
+  this.render = function (a, j) {
     function i(a) {
       var b, c, d, e;
       $.setRGB(0, 0, 0);
@@ -3783,16 +3783,16 @@ THREE.CanvasRenderer = function(a) {
     k.setTransform(1, 0, 0, 1, 0, 0);
   };
 };
-THREE.RenderableVertex = function() {
+THREE.RenderableVertex = function () {
   this.positionWorld = new THREE.Vector3();
   this.positionScreen = new THREE.Vector4();
   this.visible = !0;
 };
-THREE.RenderableVertex.prototype.copy = function(a) {
+THREE.RenderableVertex.prototype.copy = function (a) {
   this.positionWorld.copy(a.positionWorld);
   this.positionScreen.copy(a.positionScreen);
 };
-THREE.RenderableFace3 = function() {
+THREE.RenderableFace3 = function () {
   this.v1 = new THREE.RenderableVertex();
   this.v2 = new THREE.RenderableVertex();
   this.v3 = new THREE.RenderableVertex();
@@ -3808,7 +3808,7 @@ THREE.RenderableFace3 = function() {
   this.uvs = [[]];
   this.z = null;
 };
-THREE.RenderableFace4 = function() {
+THREE.RenderableFace4 = function () {
   this.v1 = new THREE.RenderableVertex();
   this.v2 = new THREE.RenderableVertex();
   this.v3 = new THREE.RenderableVertex();
@@ -3826,15 +3826,15 @@ THREE.RenderableFace4 = function() {
   this.uvs = [[]];
   this.z = null;
 };
-THREE.RenderableObject = function() {
+THREE.RenderableObject = function () {
   this.z = this.object = null;
 };
-THREE.RenderableParticle = function() {
+THREE.RenderableParticle = function () {
   this.rotation = this.z = this.y = this.x = null;
   this.scale = new THREE.Vector2();
   this.material = null;
 };
-THREE.RenderableLine = function() {
+THREE.RenderableLine = function () {
   this.z = null;
   this.v1 = new THREE.RenderableVertex();
   this.v2 = new THREE.RenderableVertex();
@@ -3844,7 +3844,7 @@ THREE.RenderableLine = function() {
 function randomRange(t, i) {
   return Math.random() * (i - t) + t;
 }
-(Particle3D = function(t) {
+(Particle3D = function (t) {
   THREE.Particle.call(this, t),
     (this.velocity = new THREE.Vector3(0, -2, 0)),
     this.velocity.rotateX(randomRange(-45, 45)),
@@ -3854,32 +3854,32 @@ function randomRange(t, i) {
 }),
   (Particle3D.prototype = new THREE.Particle()),
   (Particle3D.prototype.constructor = Particle3D),
-  (Particle3D.prototype.updatePhysics = function() {
+  (Particle3D.prototype.updatePhysics = function () {
     this.velocity.multiplyScalar(this.drag),
       this.velocity.addSelf(this.gravity),
       this.position.addSelf(this.velocity);
   });
 var TO_RADIANS = Math.PI / 180;
-(THREE.Vector3.prototype.rotateY = function(t) {
+(THREE.Vector3.prototype.rotateY = function (t) {
   (cosRY = Math.cos(t * TO_RADIANS)), (sinRY = Math.sin(t * TO_RADIANS));
   var i = this.z,
     o = this.x;
   (this.x = o * cosRY + i * sinRY), (this.z = o * -sinRY + i * cosRY);
 }),
-  (THREE.Vector3.prototype.rotateX = function(t) {
+  (THREE.Vector3.prototype.rotateX = function (t) {
     (cosRY = Math.cos(t * TO_RADIANS)), (sinRY = Math.sin(t * TO_RADIANS));
     var i = this.z,
       o = this.y;
     (this.y = o * cosRY + i * sinRY), (this.z = o * -sinRY + i * cosRY);
   }),
-  (THREE.Vector3.prototype.rotateZ = function(t) {
+  (THREE.Vector3.prototype.rotateZ = function (t) {
     (cosRY = Math.cos(t * TO_RADIANS)), (sinRY = Math.sin(t * TO_RADIANS));
     var i = this.x,
       o = this.y;
     (this.y = o * cosRY + i * sinRY), (this.x = o * -sinRY + i * cosRY);
   });
 
-$(function() {
+$(function () {
   var container = document.querySelector('.snow-container');
   if (/MSIE 6|MSIE 7|MSIE 8/.test(navigator.userAgent)) {
     return;
@@ -3887,7 +3887,7 @@ $(function() {
     if (/MSIE 9|MSIE 10/.test(navigator.userAgent)) {
       $(container)
         .css('height', $(window).height())
-        .bind('click', function() {
+        .bind('click', function () {
           $(this).remove();
         });
     }
