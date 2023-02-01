@@ -20,7 +20,7 @@ nav:
 
 ## 2. 需要掌握的基本规范
 
-- [git 命令及 git-commit 规范](/article/2/baseguifan/git-commit)
+- [git 命令及 git-commit 规范](/guide/git)
 - [typescript 注释规范](/article/2.基本需要掌握的规范/2.typescript%20注释规范)
 - [json-schema](/article/2.基本需要掌握的规范/3.json-schema)
 
