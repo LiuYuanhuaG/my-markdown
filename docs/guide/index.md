@@ -1,6 +1,7 @@
 ---
 title: 总览
 order: 0
+title: 前端之路
 nav:
   title: 前端之路
   order: 0
