@@ -1,18 +1,12 @@
-import { Button, Form, Input, Select, Table } from 'antd';
-import _ from 'lodash';
-import moment from 'moment';
-import React, { useEffect, useRef, useState } from 'react';
+import { Button, Form, Input } from 'antd';
+import React, { useEffect } from 'react';
 import Updata from './demo';
 
 const App = () => {
   const [form] = Form.useForm();
-  const [data, setData] = useState<[]>([]);
-  const [key, setKey] = useState(0);
-
-  const [editingKey, setEditingKey] = useState('');
 
   useEffect(() => {}, []);
-  const onFinish = val => {
+  const onFinish = (val) => {
     console.log(val);
   };
 

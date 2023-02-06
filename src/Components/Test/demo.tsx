@@ -7,7 +7,8 @@ import FileListItem from './FileListItem';
 interface Props {
   form: FormInstance<any>;
   name: string;
-  ItemOp: any;
+  rules?: { required: boolean; message: string }[];
+  ItemOp?: any;
 }
 
 const Updata = ({ form, name, ...ItemOp }: Props) => {
@@ -18,13 +19,14 @@ const Updata = ({ form, name, ...ItemOp }: Props) => {
     console.log(target);
     let FileList = _.cloneDeep([
       ...yxFileList,
-      ...Array.from(files ?? [])?.map(item => item.originFileObj ?? item),
+      ...Array.from(files ?? [])?.map((item) => item.originFileObj ?? item),
     ]);
     setYXFileList(FileList); // 储存值
     form.setFieldsValue({ [name]: FileList }); // 设置表单值
   };
 
   const handleClickFile = () => {
+    // eslint-disable-next-line @typescript-eslint/no-unused-expressions
     fileRef.current && fileRef.current?.click();
   };
 

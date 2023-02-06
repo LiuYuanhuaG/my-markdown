@@ -1,6 +1,6 @@
 import styless from './AutoScrollList.less';
 
-import React, { useEffect, useMemo, useRef, useState } from 'react';
+import React, { useCallback, useMemo, useRef, useState } from 'react';
 
 interface AutoScrollListType {
   fileList: any[];
@@ -25,13 +25,16 @@ const AutoScrollList = (props: AutoScrollListType) => {
   } = props;
 
   const upListEl = useRef<HTMLDivElement>(null);
-  const itemRef = useRef<HTMLDivElement>(null);
 
   const [_startOffset, setOffset] = useState(0);
 
   // 每一个的高度
   const [itemSize, setItemSize] = useState(0);
-
+  const itemRef = useCallback((node) => {
+    if (node !== null) {
+      setItemSize(node.offsetHeight);
+    }
+  }, []);
   // 展示盒子的style样式
   const contentStyle = useMemo(() => {
     if (itemSize) {
@@ -76,17 +79,6 @@ const AutoScrollList = (props: AutoScrollListType) => {
     let mt = length > 2 ? length + 1 : length;
     return `${mt * itemSize}px`; // 需要超出部分否则触底闪烁
   };
-
-  useEffect(() => {
-    setItemSize(itemRef.current?.offsetHeight ?? 50);
-    console.log(1111);
-  }, [itemRef.current]);
-
-  useEffect(() => {
-    if (list.length) {
-      setItemSize(itemRef.current?.offsetHeight ?? 50);
-    }
-  }, [list]);
 
   return (
     <div
