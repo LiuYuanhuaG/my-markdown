@@ -1304,14 +1304,15 @@ var arr = [
   Array.prototype.myForEach = function (cb) {
     var _arr = this;
     var _len = _arr.length;
-    var _arg2 = arguments[1] || window;
+    var _arg2 = arguments[1] || globalThis;
     for (let i = 0; i < _len; i++) {
       cb.apply(_arg2, [_arr[i], i, _arr]);
     }
   }
 
-  // Array.prototype.myForEach = function (cb, _this) {
-  //   _this = cb.prototype ? _this : window
+  // Array.prototype.myForEach = function (cb, thisArg) {
+  //
+  //   let _this = cb.prototype ? thisArg : globalThis
 
   //   for (let i = 0; i < _this.length; i++) {
 
@@ -1379,7 +1380,7 @@ var arr = [
   Array.prototype.myMap = function (cb) {
     var _arr = this;
     var _len = _arr.length;
-    var _arg2 = arguments[1] || window;
+    var _arg2 = arguments[1] || globalThis;
     var _newArr = []
     var _item;
     var _res;
@@ -1390,9 +1391,9 @@ var arr = [
     }
     return _newArr
   }
-  // Array.prototype.myMap = function (cb, _this) {
+  // Array.prototype.myMap = function (cb, thisArg) {
 
-  //   _this = cb.prototype ? _this : window
+  //  let _this = cb.prototype ? thisArg : globalThis
   //   const _arr = []
   //   for (let index = 0; index < this.length; index++) {
   //     _arr[index] = cb.call(_this, this[index], index, this)
