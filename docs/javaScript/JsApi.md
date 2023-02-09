@@ -1,3 +1,12 @@
+---
+title: jsApi
+order: 1
+
+group:
+  title: js
+  order: 0
+---
+
 # method
 
 ## Know
@@ -1124,15 +1133,11 @@ Object.isExtensible(Object.freeze({}));
 ##### Object.preventExtensions
 
 - 浅操作
-
 - 让一个对象不可拓展
-
 - 可删除 可修改 不可拓展
-
 - 返回不可拓展的对象
 
   - 仅阻止添加自身的属性
-
   - 原型链属性还可以添加 但不能解除引用关系
 
 ```js
@@ -1193,7 +1198,6 @@ obj.__lookupGetter__('a');
 ##### Object.hasOwnProperty
 
 - 返回一个布尔值，指示对象是否具有指定的属性作为它自己的属性（排除了继承的属性）
-
 - obj.hasOwnProperty(prop)
 
 ```js
@@ -1720,7 +1724,7 @@ console.log(flag);
 | Math.fround(值)       |      | 数字转成浮点型 |      |                                                |
 | Math.max(值)          |      | 最大值         |      | 一组数                                         |
 | Math.min              |      | 最小值         |      |                                                |
-| Math.pow(x,y)         |      | 幂             |      | Math.pow(7,2) => 7² \|\| 2\*\*3 = 8            |
+| Math.pow(x,y)         |      | 幂             |      | Math.pow(7,2) => 7²\|\| 2\*\*3 = 8             |
 | Math.random()\*100)+1 |      | 伪随机数[0,1)  |      | parseInt(Math.random ( )\*5 ); => 0-4 的随机数 |
 | Math.round( )         |      | 四舍五入       |      | 小数点是 5 时候 向大取整                       |
 
@@ -1867,18 +1871,18 @@ promise.then(
 - 1.`Promise` 分为三种状态 `PENDING FULFILL REJECTED`
   - 只可以从 `PENDING => FULFILL` 或 `PENDING => REJECTED`
   - 不可以从 `FULFILL => REJECTED` `FULFILL => PENDING` `REJECTED => PENDING`
-  - 且默认是`PENDING`的状态
+  - 且默认是 `PENDING`的状态
 - 2.`new Promise(executor)` 实例化时候传入一个函数, 里面又有包含 `resolve和reject两个回调函数`
   - 因此也就是 `constructor(executor)` 就是实例化时候传入的函数
   - 同时这个 `executor => (resolve,reject)=>{ }`
-  - 所以需要定义`executor的两个回调`
+  - 所以需要定义 `executor的两个回调`
   - 在对应的回调改变对应的状态, 并存储对应传入的值
 - 3.`let Promise = new Promise(executor)` , `Promise.then((value)=>{}, (reason)=>{})`
-  - 实例化对象需要`.then` 来对结果进行处理, 因此需要给实例对象添加 `then` 方法
+  - 实例化对象需要 `.then` 来对结果进行处理, 因此需要给实例对象添加 `then` 方法
   - 用 `class` 直接就与 `constructor` 同级处添加 `then` 方法就可以了
   - 如果是构造函数的话, 就是 `myPromise.prototype.then = function(){ }`
 - 4.在使用 `then` 方法时, 我们在这个函数参数中得到 `resolve` 和 `reject` 传入的对应的值
-  - 因此在 `class` 的 `then` 方法定义中, 我们根据不同的`Promise`状态, 在正确的回调中传入正确的参数就可以了
+  - 因此在 `class` 的 `then` 方法定义中, 我们根据不同的 `Promise`状态, 在正确的回调中传入正确的参数就可以了
 - 5.当 `executor` 中手动抛出错误的时候, 我们需要在 `executor` 函数执行的地方进行 `try-catch` 捕获
   - 如果捕获到异常了直接执行 `reject`
 
@@ -1951,21 +1955,21 @@ promise.then(
 );
 ```
 
-- 1.当`executor`传入异步的处理后, `.then` 的时候并没有处理`pending`的状态
+- 1.当 `executor`传入异步的处理后, `.then` 的时候并没有处理 `pending`的状态
   - 使用发布订阅模式
   - 订阅
-    - 在`then`方法中如果是 `pending` 状态则收集所有`resolve`和`reject`的回调
-    - 因此在`constructor`中定义两个数组来进行收集 `onFulfilledCallbacks` `onRejectedCallbacks`
+    - 在 `then`方法中如果是 `pending` 状态则收集所有 `resolve`和 `reject`的回调
+    - 因此在 `constructor`中定义两个数组来进行收集 `onFulfilledCallbacks` `onRejectedCallbacks`
   - 发布
-    - 需要在`resolve` `reject` 函数中执行之前订阅收集的结果
+    - 需要在 `resolve` `reject` 函数中执行之前订阅收集的结果
     - `this.onFulfilledCallbacks.forEach(cb => cb());`
     - `this.onRejectedCallbacks.forEach(cb => cb());`
 - 2.如果有多个 `promise.then` 需要依次执行各自的回调
   - 同步
     - 当是同步的时候默认就是依次执行的
   - 异步
-    - 使用发布订阅的模式, 当异步`pending`的时候 将`resove reject`的值都进行收集
-    - 在`resove` `reject` 的函数中执行所有的收集的状态
+    - 使用发布订阅的模式, 当异步 `pending`的时候 将 `resove reject`的值都进行收集
+    - 在 `resove` `reject` 的函数中执行所有的收集的状态
 
 ```js
 const PENDING = 'PENDING';
@@ -2023,35 +2027,50 @@ class myPromise {
 ###### 3.1 细节
 
 - `catch`
+
   - `catch` 在 `Promise` 的源码层面就是一个 `then`
   - 和 `then` 的逻辑相同
+
 - 成功的条件
+
   - `then return` 普通的值
-  - `then return` 一个`Promise`且是 `resolve` 成功的回调
+  - `then return` 一个 `Promise`且是 `resolve` 成功的回调
+
 - 失败的条件
+
   - `then` 抛出了异常 `throw new Error`
-  - `then return` 一个`Promise`且是 `reject` 失败的回调
+  - `then return` 一个 `Promise`且是 `reject` 失败的回调
+
 - Promise 链式调用
-  - `jQuery` 链式调用 在函数内部返回一个`this`
+
+  - `jQuery` 链式调用 在函数内部返回一个 `this`
   - 在每一个 `then` 的时候返回一个新的 `new Promise.then()`
     - 如果不是链式调用.直接创建新的调用 调用的将是第一的值
+
 - `Promise.resolve()`
 
-  - 在`then中`如果需要 `return` 一个 `Promise`
+  - 在 `then中`如果需要 `return` 一个 `Promise`
   - 可以直接通过语法糖 `return Promise.resolve('xxx')`
   - 或者自己创建一个新的 `promise` 对象并 `return`
 
 - 1. `return` 传递普通的值
-- 2. `return` 一个`Promise` 传入 `resolve` 的结果
+- 2. `return` 一个 `Promise` 传入 `resolve` 的结果
+
   - 同步异步都可以
-- 3. `return` 一个`Promise` 传入 `reject` 的结果
+
+- 3. `return` 一个 `Promise` 传入 `reject` 的结果
+
   - 下一段链式调用执行 `reject` 的回调
+
 - 4. `then`走了失败的回调函数后 再走了 `then`
 - 5. 如果 `then throw new Error`
+
   - 就会走到下一段的 reject 中
-- 6. 用`catch` 捕获异常
+
+- 6. 用 `catch` 捕获异常
+
   - `then`会找最新的失败的调用 不论是 `catch` 还是 `reject`
-  - 如果 `catch` `return` 一个普通值 在下一个`then` `resolve` 进行捕获
+  - 如果 `catch` `return` 一个普通值 在下一个 `then` `resolve` 进行捕获
 
 ```js
 let promise = new myPromise((resolve, reject) => {
@@ -2242,7 +2261,7 @@ promise
 ###### 3.2 实现
 
 - 如果返回新的 `Promise`
-- 用`x`函数存储, 如果是 `Promise` 需要利用 `resolve` 进行抛出
+- 用 `x`函数存储, 如果是 `Promise` 需要利用 `resolve` 进行抛出
 - 如果 `throw Error`
 - 进行 `try catch` 如果失败直接 `reject`
 - `resolvePromise(x);` 用来处理 `x`
@@ -2445,7 +2464,6 @@ class myPromise {
 ### proxy
 
 - Proxy 是代理, 和 Object.defineproperty 完全不同
-
 - Object.defineProperty 是用于监听属性,而 Proxy 是监听整个对象
 
 ```js
@@ -2821,23 +2839,23 @@ reg = /{{.*?}}/g // {{efg}} {{xyz}
 
 - var _dt_ = new _Date_();
 
-| 方法                      | 描述                 | 代码                   | 其他 | 注意                    |
-| ------------------------- | -------------------- | ---------------------- | ---- | ----------------------- |
-| Date.now( );              | H5 浏览器 毫秒用这个 | var _tm_=_Date_.now(); |      | tm 就是数值             |
-| _dt_.getFullYear()        | 获取年份             |                        |      |                         |
-| dt.getMonth()+1           | 获取月份             | 从 0 开始              |      | 真实的月份是需要加 1 的 |
-| dt.getDate()              | 获取日期             |                        |      |                         |
-| dt.getHours()             | 获取小时             |                        |      |                         |
-| dt.getMinutes()           | 获取分钟             |                        |      |                         |
-| dt.getSeconds()           | 获取秒               |                        |      |                         |
-| dt.getDay()               | 获取星期             | 不常用                 |      | 0 指星期天              |
-| _dt_.toDateString()       | 英文的日期           | 不常用                 |      | Fri Aug 28 2020         |
-| _dt_.toLocaleDateString() | 数字格式日期         | 不常用                 |      | 2020/8/28               |
-| _dt_.toTimeString()       | 小时分钟秒           | 不常用                 |      | 17:05:46 GMT+0800       |
-| _dt_.toLocaleTimeString() | 时间段 小时分钟秒    | 不常用                 |      | 下午 5:05:46            |
-| _dt_.valueOf()            | 毫秒值               | 不常用                 |      | 1598605546006           |
-| var _dt_=+new _Date_();   | 毫秒数               | +号 只支持 Date 对象   |      | _console_.log(_dt_);    |
-| dt.getTime()              | 毫秒数               |                        |      |                         |
+| 方法                      | 描述                 | 代码                  | 其他 | 注意                    |
+| ------------------------- | -------------------- | --------------------- | ---- | ----------------------- |
+| Date.now( );              | H5 浏览器 毫秒用这个 | var*tm*=_Date_.now(); |      | tm 就是数值             |
+| _dt_.getFullYear()        | 获取年份             |                       |      |                         |
+| dt.getMonth()+1           | 获取月份             | 从 0 开始             |      | 真实的月份是需要加 1 的 |
+| dt.getDate()              | 获取日期             |                       |      |                         |
+| dt.getHours()             | 获取小时             |                       |      |                         |
+| dt.getMinutes()           | 获取分钟             |                       |      |                         |
+| dt.getSeconds()           | 获取秒               |                       |      |                         |
+| dt.getDay()               | 获取星期             | 不常用                |      | 0 指星期天              |
+| _dt_.toDateString()       | 英文的日期           | 不常用                |      | Fri Aug 28 2020         |
+| _dt_.toLocaleDateString() | 数字格式日期         | 不常用                |      | 2020/8/28               |
+| _dt_.toTimeString()       | 小时分钟秒           | 不常用                |      | 17:05:46 GMT+0800       |
+| _dt_.toLocaleTimeString() | 时间段 小时分钟秒    | 不常用                |      | 下午 5:05:46            |
+| _dt_.valueOf()            | 毫秒值               | 不常用                |      | 1598605546006           |
+| var*dt*=+new _Date_();    | 毫秒数               | +号 只支持 Date 对象  |      | _console_.log(_dt_);    |
+| dt.getTime()              | 毫秒数               |                       |      |                         |
 
 ```javascript
 var dt = new Date();
@@ -3149,7 +3167,7 @@ console.log(a==newA) // true 非严格基本包装类型自动转换
 #### for-in
 
 - for-in 循环还会枚举原型链属性
-  - 不包括`Symbol`属性。
+  - 不包括 `Symbol`属性。
   - Object.entries() 不会
 - 遍历可枚举无序对象
 
@@ -3273,6 +3291,7 @@ console.log(g.next(2))
   - 在运行时加载
 
 - es6 有引用关系
+
   - 在编译时加载
 
 ```javascript

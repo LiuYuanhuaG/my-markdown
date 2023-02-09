@@ -1,6 +1,12 @@
 ---
-title: 常用方法
+title: 常用工具方法
 order: 2
+nav:
+  title: javaScript
+
+group:
+  title: js
+  order: 2
 ---
 
 ## 1、加载 js ||css || style

@@ -1,3 +1,7 @@
+---
+hero: {}
+---
+
 # 🌟 Welcome to Web Front End Hospital
 
 **This is a new documentation site**
