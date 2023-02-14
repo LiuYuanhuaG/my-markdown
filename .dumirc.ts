@@ -27,7 +27,7 @@ export default defineConfig({
   resolve: {
     docDirs: ['docs'], // 2.0 默认值
     atomDirs: [
-      // { type: 'article', dir: 'src/article' },
+      { type: '@', dir: '/public' },
       { type: 'component', dir: 'src/Components' },
     ],
   },
