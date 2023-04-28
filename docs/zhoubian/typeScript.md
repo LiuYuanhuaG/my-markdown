@@ -4,9 +4,6 @@ order: 0
 nav:
   title: 周边生态
   order: 2
-group:
-  title: TypeScript
-  order: 0
 ---
 
 ## 原始数据类型
@@ -211,7 +208,7 @@ let fibonacci3: any[] = [1, 1, 2, 3, 5]; //任意类型数组 any[] === []
 
 #### Array 泛型表示
 
-关于泛型，可以参考`<a href="#泛型">`泛型`</a>`一章。
+关于泛型，可以参考 `<a href="#泛型">`泛型 `</a>`一章。
 
 ```ts
 let fibonacci: Array<number> = [1, 1, 2, 3, 5]; //全为number类型数组
@@ -857,7 +854,7 @@ function getValue<T>(arg: T): T {
 }
 ```
 
-泛型的语法是尖括号 `<>` 里面写类型参数，一般用 `T` 来表示第一个类型变量名称，其实它可以用任何有效名称来代替,比如我们用`NIUBI`也是编译正常的
+泛型的语法是尖括号 `<>` 里面写类型参数，一般用 `T` 来表示第一个类型变量名称，其实它可以用任何有效名称来代替,比如我们用 `NIUBI`也是编译正常的
 
 > 泛型就像一个占位符一个变量，在使用的时候我们可以将定义好的类型像参数一样传入，原封不动的输出
 
@@ -905,7 +902,7 @@ function getLength<T>(arg: T): T {
 
 因为泛型 T 不一定包含属性 length，那么我想 getLength 这个函数只允许传入包含 length 属性的变量，该怎么做呢
 
-这时，我们可以使用`extends`关键字来对泛型进行约束
+这时，我们可以使用 `extends`关键字来对泛型进行约束
 
 ```ts
 interface Lengthwise {
@@ -1048,7 +1045,7 @@ createArray(4, 'true'); // function createArray<string>(length: number, value: s
   `infer`语法的限制如下：
 
   1. `infer`只能在条件类型的 extends 子句中使用
-  2. `infer`得到的类型只能在`true`语句中使用, 即`X`中使用
+  2. `infer`得到的类型只能在 `true`语句中使用, 即 `X`中使用
 
   ```ts
   type MySum = (x: number, y: number) => number;
