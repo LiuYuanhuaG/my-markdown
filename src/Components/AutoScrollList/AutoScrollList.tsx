@@ -1,4 +1,4 @@
-import styless from './AutoScrollList.less';
+import styless from './AutoScrollList.module.less';
 
 import React, { useCallback, useMemo, useRef, useState } from 'react';
 

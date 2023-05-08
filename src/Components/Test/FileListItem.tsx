@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
-import classs from './FileListItem.less';
+import classs from './FileListItem.module.less';
 interface Props {
   fileList: File[];
   // itemSizeOption: { size: number; company: string | null };
@@ -61,7 +61,7 @@ Props) => {
     return `${fileList.length * itemSize}px`;
   };
 
-  const onLoad = e => {
+  const onLoad = (e) => {
     console.log(e, 'boxOnLoad'); // 没有这个事件
   };
 
@@ -74,18 +74,15 @@ Props) => {
 
   return (
     <span
-      className={classs.up_list}
+      className={classs.upList}
       ref={upListEl}
       onScroll={onScroll}
       onLoad={onLoad}
     >
-      <div
-        className="up_list_item_scroll"
-        style={{ height: getScorll() }}
-      ></div>
+      <div className="upListItemScroll" style={{ height: getScorll() }}></div>
       <div style={{ transform: getTransform }}>
-        {list.map(item => (
-          <div className="up_list_item">{item.name}</div>
+        {list.map((item) => (
+          <div className="upListItem">{item.name}</div>
         ))}
       </div>
     </span>

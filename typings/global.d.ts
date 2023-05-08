@@ -9,9 +9,7 @@ declare module '*.tiff';
 declare module '*.xlsx';
 declare module '*.less';
 declare module 'howtools';
-declare module 'leaflet';
 declare module '*.css';
-declare module '*.less';
 declare module '*.png';
 
 declare module '*.svg' {

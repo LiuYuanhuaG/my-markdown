@@ -1,13 +1,13 @@
+import { Map } from 'mapbox-gl';
 import React, { useEffect, useRef, useState } from 'react';
 import mapboxgl from './baseConfig';
-import styles from './mapboxSync.less';
+import styles from './mapboxSync.module.less';
 let isSync1: null | boolean = null; // 用于判断是那个地图在进行缩放 使其以正常缩放速度进行缩放。否则缩放速度会慢于平时。性能不佳
 let time; // 定时器
-
 const MapboxSync = () => {
-  const sync1 = useRef(null);
-  const sync2 = useRef(null);
-  const boxRef = useRef(null);
+  const sync1 = useRef<Map>();
+  const sync2 = useRef<Map>();
+  const boxRef = useRef<HTMLDivElement | null>(null);
   const hasMove = useRef(false);
 
   const [sync1Style, setSync1Style] = useState({});
@@ -51,7 +51,7 @@ const MapboxSync = () => {
         isSync1 = false;
       }
       if (isSync1 === false) {
-        const map2_zoom = sync2.current?.getZoom();
+        const map2_zoom = sync2.current?.getZoom() ?? 0;
         sync1.current?.setZoom(map2_zoom);
         setSyncCenter(sync2.current, sync1.current);
         clearTimeout(time);
@@ -65,8 +65,7 @@ const MapboxSync = () => {
         isSync1 = true;
       }
       if (isSync1 === true) {
-        const map1_zoom = sync1.current?.getZoom();
-        sync2.current?.setZoom(map1_zoom);
+        sync1.current && sync2.current?.setZoom(sync1.current?.getZoom());
         setSyncCenter(sync1.current, sync2.current);
         clearTimeout(time);
         time = setTimeout(() => {
@@ -77,23 +76,22 @@ const MapboxSync = () => {
 
     // 倾斜
     sync2.current?.on('pitch', function () {
-      const map2_pitch = sync2.current?.getPitch();
-      sync1.current?.setPitch(map2_pitch);
+      if (sync2.current) {
+        sync1.current?.setPitch(sync2.current?.getPitch());
+      }
     });
     sync1.current?.on('pitch', function () {
-      const map1_pitch = sync1.current?.getPitch();
-      sync2.current?.setPitch(map1_pitch);
+      sync1.current && sync2.current?.setPitch(sync1.current?.getPitch());
     });
 
     // 旋转
     sync1.current?.on('rotate', function () {
-      const map1_bear = sync1.current?.getBearing();
-      sync2.current?.setBearing(map1_bear);
+      sync1.current && sync2.current?.setBearing(sync1.current?.getBearing());
     });
     sync2.current?.on('rotate', function () {
-      const map2_bear = sync2.current?.getBearing();
-      sync1.current?.setBearing(map2_bear);
+      sync2.current && sync1.current?.setBearing(sync2.current?.getBearing());
     });
+    window.addEventListener('resize', resize);
   };
 
   const resize = () => {
@@ -121,21 +119,23 @@ const MapboxSync = () => {
     init();
   }, []);
   return (
-    <div
-      className={styles['map-box']}
-      ref={boxRef}
-      onMouseMove={onMouseMove}
-      onMouseUp={onEventFalse}
-      onMouseLeave={onEventFalse}
-      onDragStart={onEventTrue}
-      // onDragEnd={onEventFalse}
-    >
-      <div id="async1" style={sync1Style}></div>
-      <div id="boundary" draggable="false">
-        <div onMouseDown={onEventTrue} className="boundary-btn"></div>
+    <>
+      <div
+        className={styles['map-box']}
+        ref={boxRef}
+        onMouseMove={onMouseMove}
+        onMouseUp={onEventFalse}
+        onMouseLeave={onEventFalse}
+        onDragStart={onEventTrue}
+        // onDragEnd={onEventFalse}
+      >
+        <div id="async1" style={sync1Style}></div>
+        <div id="boundary" draggable="false">
+          <div onMouseDown={onEventTrue} className="boundary-btn"></div>
+        </div>
+        <div id="async2" style={sync2Style}></div>
       </div>
-      <div id="async2" style={sync2Style}></div>
-    </div>
+    </>
   );
 };
 

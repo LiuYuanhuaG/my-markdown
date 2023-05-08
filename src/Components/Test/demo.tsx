@@ -2,7 +2,7 @@ import { Form } from 'antd';
 import { FormInstance } from 'antd/es/form/Form';
 import _ from 'lodash';
 import React, { useRef, useState } from 'react';
-import classs from './demo.less';
+import classs from './demo.module.less';
 import FileListItem from './FileListItem';
 interface Props {
   form: FormInstance<any>;
@@ -13,13 +13,15 @@ interface Props {
 
 const Updata = ({ form, name, ...ItemOp }: Props) => {
   const [yxFileList, setYXFileList] = useState<File[]>([]);
-  const fileRef = useRef(null);
+  const fileRef = useRef<HTMLInputElement>(null);
   const fileChange = ({ target }) => {
     let { files } = target;
     console.log(target);
     let FileList = _.cloneDeep([
       ...yxFileList,
-      ...Array.from(files ?? [])?.map((item) => item.originFileObj ?? item),
+      ...Array.from(files ?? [])?.map(
+        (item) => (item as any)?.originFileObj ?? item,
+      ),
     ]);
     setYXFileList(FileList); // 储存值
     form.setFieldsValue({ [name]: FileList }); // 设置表单值
@@ -43,7 +45,7 @@ const Updata = ({ form, name, ...ItemOp }: Props) => {
         style={{ display: 'none' }}
       ></input>
 
-      <span className={classs.up_box}>
+      <span className={classs.upBox}>
         <FileListItem fileList={yxFileList}></FileListItem>
         <div
           style={{ backgroundColor: 'red', width: '30px' }}

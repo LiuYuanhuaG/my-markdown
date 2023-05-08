@@ -82,7 +82,7 @@ export default defineConfig({
     top: 0;
     left: 0;
     width: 100vw;
-    height: 100vh;
+    height: 100%;
     background-color: rgba(0, 0, 0, 0.02);
     pointer-events: none;
     z-index: 100;
