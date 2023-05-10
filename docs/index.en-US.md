@@ -1,12 +1,8 @@
----
-hero: {}
----
-
-# 🌟 Welcome to Web Front End Hospital
+🌟 Welcome to Web Front End Hospital
 
 **This is a new documentation site**
 
-**English | **[简体中文](zhCN)
+[简体中文](/) **| English**
 
 ## 🚀 What's in here?
 

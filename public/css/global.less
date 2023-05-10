@@ -5,6 +5,7 @@
 .dumi-default-header .dumi-default-header-content,
 body .dumi-default-doc-layout > main {
   max-width: calc(100% - 48px);
+  height: calc(100% - 70px);
   min-width: 1440px;
 }
 
@@ -13,6 +14,30 @@ body .dumi-default-doc-layout > main {
   max-width: 100%;
 }
 
+.dumi-default-content {
+  position: relative;
+}
+
 .dumi-default-header {
   min-width: 1440px;
+  padding-bottom: 20px;
+}
+
+.dumi-default-doc-layout {
+  height: 100%;
+}
+
+#root {
+  height: 100vh;
+}
+
+.dumi-default-footer {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  left: 0;
+}
+
+.markdown {
+  margin-bottom: 100px;
 }
