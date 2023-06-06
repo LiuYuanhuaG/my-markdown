@@ -1,26 +1,79 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import styless from './TreeItem.module.less';
-export default function TreeItem({ treeData, treeFirst }) {
-  function delChild() {
-    this.treeData.splice(index, 1);
+export default function TreeItem({
+  treeData,
+  treeFirst,
+  // source,
+  addChildNode,
+  delChildNode,
+}) {
+  const [treeD, setTreeD] = useState([]);
+  // 这里都是非必须的
+  function _delChild(item, index, source) {
+    // treeData.splice(index, 1);
+
+    setTreeD((_) => {
+      return _.filter((node) => {
+        return node.key !== item.key;
+      });
+    });
   }
-  function addChild() {
-    if (this.treeData[index].child) {
-      this.treeData[index].child.push({ name: '1' });
+  // 这里都是非必须的
+  function _addChild(item, index) {
+    if (!treeFirst) {
     } else {
-      this.$set(this.treeData[index], 'child', [{ name: '1' }]);
+      setTreeD((_) => {
+        let nodes = _.map((node) => {
+          if (node.key === item.key) {
+            if (node.child instanceof Array) {
+              let cNode = node.child[node.child.length];
+
+              let lastNode = cNode
+                ? {
+                    key: Math.random() * 1000000,
+                    name: `${cNode.name} ${node.child.length + 1}`,
+                    child: [],
+                  }
+                : {
+                    key: Math.random() * 1000000,
+                    name: `${node.child.length + 1}`,
+                    child: [],
+                  };
+              node.child.push(lastNode);
+            } else {
+              node.child = [
+                {
+                  key: Math.random() * 1000000,
+                  name: `${index + 1}`,
+                  child: {},
+                },
+              ];
+            }
+          }
+          return node;
+        });
+
+        return nodes;
+      });
     }
   }
-  console.log(treeData, 'treeData');
+  const delChildNodes = delChildNode ? delChildNode : _delChild;
+  const addChildNodes = addChildNode ? addChildNode : _addChild;
+  // function setChild() {}
+  useEffect(() => {
+    setTreeD(treeData);
+    console.log(treeData, 'treeData');
+  }, [treeData]);
+
   return (
     <div className={styless.card}>
       <ul>
-        {treeData.map((item, index) => {
+        {treeD.map((item, index) => {
           return (
-            <li key={index}>
+            <li key={item.key}>
               <div
                 className={`item ${index !== 0 ? 'line-left' : ''} ${
-                  index != treeData.length - 1 ? 'line-right' : ''
+                  index !== treeD.length - 1 ? 'line-right' : ''
                 }`}
               >
                 <div
@@ -29,16 +82,35 @@ export default function TreeItem({ treeData, treeFirst }) {
                   } ${!treeFirst ? 'line-top' : ''}`}
                 >
                   {!treeFirst && (
-                    <div className="reduce" onClick={delChild(index)}>
+                    <div
+                      className="reduce"
+                      onClick={() => {
+                        // delChild(item, index, treeD);
+                        delChildNodes(item, index);
+                      }}
+                    >
                       -
                     </div>
                   )}
                   <div>{item.name}</div>
-                  <div className="plus" onClick={addChild(index)}>
+                  <div
+                    className="plus"
+                    onClick={() => {
+                      // addChild(item, index, treeD);
+                      addChildNodes(item, index);
+                    }}
+                  >
                     +
                   </div>
                 </div>
               </div>
+              {item.child && item.child.length > 0 && (
+                <TreeItem
+                  treeData={item.child}
+                  addChildNode={addChildNode}
+                  delChildNode={delChildNode}
+                />
+              )}
             </li>
           );
         })}

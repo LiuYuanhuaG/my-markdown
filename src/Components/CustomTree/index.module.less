@@ -2,11 +2,14 @@
   background: #fff;
   min-height: calc(80vh - 110px);
   position: relative;
+  overflow: auto;
 
-  &-content {
-    background: #fff;
-    position: absolute;
-    top: 0;
-    left: 0;
+  :global {
+    .tree-content {
+      background: #fff;
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
   }
 }

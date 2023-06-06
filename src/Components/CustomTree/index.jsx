@@ -1,13 +1,28 @@
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import styles from './index.module.less';
 import TreeItem from './TreeItem';
 export default function CustomTree() {
   const [treeData, setTreeData] = useState([
     {
       name: '1',
+      key: '1',
       child: [
-        { name: '2', child: [{ name: '1' }, { name: '2' }] },
-        { name: '1', child: [{ name: '1' }, { name: '2' }] },
+        {
+          name: '2',
+          key: '1-1',
+          child: [
+            { name: '1', key: '1-1-1' },
+            { name: '2', key: '1-1-2' },
+          ],
+        },
+        {
+          name: '1',
+          key: '1-2',
+          child: [
+            { name: '1', key: '1-2-1' },
+            { name: '2', key: '1-2-2' },
+          ],
+        },
       ],
     },
   ]);
@@ -15,8 +30,8 @@ export default function CustomTree() {
   const yRef = useRef();
   // 拖拽移动
   function move(e) {
+    e.stopPropagation();
     const odiv = e.currentTarget; // 获取元素
-    console.log(odiv);
 
     // 算出鼠标相对元素的位置
     const disX = e.clientX - odiv.offsetLeft;
@@ -40,11 +55,56 @@ export default function CustomTree() {
       document.onmouseup = null;
     };
   }
+
+  function deepObj(list, key) {
+    for (let i = 0; i < list.length; i++) {
+      const node = list[i];
+      if (node.key === key) {
+        !(node.child instanceof Array) && (list[i].child = []);
+        list[i].child.push({
+          name: i,
+          key: Math.random() * 100000,
+          child: [],
+        });
+        console.log(list[i]);
+        break;
+      }
+      if (node.key !== key && node.child && node.child.length) {
+        list[i].child = deepObj(node.child, key);
+      }
+    }
+    return list;
+  }
+  // 自定义添加节点设置数据
+  function addChildNode(item) {
+    // treeData.
+    let _treeData = treeData;
+
+    setTreeData((_) => {
+      let newArr = deepObj(_, item.key);
+      return [...newArr];
+    });
+  }
+  // 自定义 删除节点 设置数据
+  function delChildNode(item) {
+    // setTreeData((_) => {
+    //   let newArr = deepObj(_, item.key);
+    //   return [...newArr];
+    // });
+  }
+  useEffect(() => {
+    console.log(treeData);
+  }, [treeData]);
   return (
     <div className={styles.tree}>
-      <div className="tree-content" onMouseMove={move}>
+      <div className="tree-content" onMouseDown={move}>
         {/* <tree-item tree-data={treeData} tree-first="true" /> */}
-        <TreeItem treeData={treeData} treeFirst="true"></TreeItem>
+        <TreeItem
+          treeData={treeData}
+          treeFirst={true}
+          addChildNode={addChildNode}
+          delChildNode={delChildNode}
+        ></TreeItem>
       </div>
     </div>
   );
