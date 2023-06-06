@@ -62,7 +62,6 @@ export default function TreeItem({
   // function setChild() {}
   useEffect(() => {
     setTreeD(treeData);
-    console.log(treeData, 'treeData');
   }, [treeData]);
 
   return (
