@@ -55,26 +55,37 @@ export default function CustomTree() {
       document.onmouseup = null;
     };
   }
-
-  function deepObj(list, key) {
+  /**
+   *递归处理树形数据
+   *
+   * @param {*} list 数据列表
+   * @param {*} key
+   * @param {*} type 是否是删除
+   * @return {*}
+   */
+  function deepObj(list, key, type) {
     for (let i = 0; i < list.length; i++) {
       const node = list[i];
       if (node.key === key) {
-        !(node.child instanceof Array) && (list[i].child = []);
-        list[i].child.push({
-          name: i,
-          key: Math.random() * 100000,
-          child: [],
-        });
-        console.log(list[i]);
+        if (type) {
+          list.splice(i, 1);
+        } else {
+          !(node.child instanceof Array) && (list[i].child = []);
+          list[i].child.push({
+            name: 1 + +(node.child[node.child.length - 1]?.name ?? 0),
+            key: Math.random() * 100000,
+            child: [],
+          });
+        }
         break;
       }
       if (node.key !== key && node.child && node.child.length) {
-        list[i].child = deepObj(node.child, key);
+        list[i].child = deepObj(node.child, key, type);
       }
     }
     return list;
   }
+
   // 自定义添加节点设置数据
   function addChildNode(item) {
     // treeData.
@@ -87,10 +98,11 @@ export default function CustomTree() {
   }
   // 自定义 删除节点 设置数据
   function delChildNode(item) {
-    // setTreeData((_) => {
-    //   let newArr = deepObj(_, item.key);
-    //   return [...newArr];
-    // });
+    setTreeData((_) => {
+      let newArr = deepObj(_, item.key, 'del');
+
+      return [...newArr];
+    });
   }
   useEffect(() => {
     console.log(treeData);
