@@ -1,5 +1,5 @@
 ---
-title: bug
+title: Vue 项目启动默认打开地址不正确
 order: 0
 
 group:
@@ -54,7 +54,7 @@ devServer: {
 
 但是也产生了新问题
 
-​ App running at:
+App running at:
 
 - Local: http://localhost:8861/
 - Network: http://localhost:8861/

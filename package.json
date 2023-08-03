@@ -46,10 +46,14 @@
   },
   "dependencies": {
     "@ant-design/icons": "^4.8.0",
+    "@turf/turf": "^6.5.0",
     "antd": "^5.0.2",
+    "colorthief": "^2.4.0",
+    "jsts": "^2.10.0",
     "leaflet": "^1.9.3",
     "lodash": "^4.17.21",
-    "mapbox-gl": "^2.11.0"
+    "mapbox-gl": "^2.11.0",
+    "ol": "^7.4.0"
   },
   "devDependencies": {
     "@commitlint/cli": "^17.1.2",

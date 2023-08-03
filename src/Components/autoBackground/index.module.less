@@ -1,0 +1,50 @@
+.root {
+  background: #fff;
+  min-height: calc(80vh - 110px);
+  position: relative;
+  display: grid;
+  grid: repeat(2, auto) / repeat(3, auto);
+  animation: all 0.5s;
+  overflow: hidden;
+  place-self: center;
+
+  :global {
+    .box {
+      display: flex;
+      padding: 40px;
+      height: 600px;
+      width: 600px;
+      border-radius: 8px;
+      box-sizing: border-box;
+      place-self: center;
+      transition: all 0.5s;
+    }
+
+    .selected {
+      padding: 30px;
+      z-index: 3;
+
+      > img {
+        --webkit-box-shadow: 0 10px 60px -10px rgb(163 158 158 / 80.7%);
+
+        box-shadow: 0 10px 60px -10px rgb(163 158 158 / 80.7%);
+        border-radius: 8px;
+      }
+    }
+
+    img {
+      // flex: auto;
+      height: auto;
+      width: 100%;
+    }
+  }
+
+  .mask {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    opacity: 0.8;
+    pointer-events: none;
+    filter: blur(20px);
+  }
+}
