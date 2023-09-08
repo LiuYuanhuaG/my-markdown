@@ -58,9 +58,10 @@ function AutoBackground(imgList) {
           return (
             <div
               key={item.key}
-              className={`${selectKey === item.key ? 'selected' : ''} box`}
+              className={`box ${selectKey === item.key ? 'boxSelected' : ''}`}
             >
               <img
+                className={`${selectKey === item.key ? 'selected' : ''}`}
                 onMouseOver={(e) => handleOver(e, item.key)}
                 onMouseLeave={(e) => handleLeave(e, item.key)}
                 src={item.img}

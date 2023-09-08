@@ -1,0 +1,182 @@
+.button-root {
+  --main_color: #f4cf47;
+  --sub_color1: #f4e19c;
+  --sub_color2: #ff8108;
+  --base_color: #000;
+  --border_radius1: 60px 60px 40px 40px / 48px 48px 30px 30px;
+  --border_radius2: 70px 70px 40px 40px / 48px 48px 30px 30px;
+  --border_radius3: 40px 40px 40px 40px / 48px 48px 30px 30px;
+}
+@keyframes sleep {
+  0% {
+    height: 36px;
+    border-radius: var(--border_radius1);
+  }
+
+  100% {
+    height: 32px;
+    border-radius: var(--border_radius2);
+  }
+}
+@keyframes wakeups {
+  0% {
+    height: 32px;
+    border-radius: var(--border_radius2);
+  }
+
+  100% {
+    height: 56px;
+    border-radius: var(--border_radius3);
+  }
+}
+
+@keyframes eye {
+  0% {
+    top: -6px;
+    width: 6px;
+    height: 6px;
+  }
+
+  30% {
+    top: -6px;
+    width: 6px;
+    height: 6px;
+  }
+
+  32% {
+    top: -4px;
+    width: 8px;
+    height: 2px;
+  }
+
+  34% {
+    top: -6px;
+    width: 6px;
+    height: 6px;
+  }
+
+  70% {
+    top: -6px;
+    width: 6px;
+    height: 6px;
+  }
+
+  72% {
+    top: -4px;
+    width: 8px;
+    height: 2px;
+  }
+
+  74% {
+    top: -6px;
+    width: 6px;
+    height: 6px;
+  }
+
+  76% {
+    top: -4px;
+    width: 8px;
+    height: 2px;
+  }
+
+  78% {
+    top: -6px;
+    width: 6px;
+    height: 6px;
+  }
+
+  100% {
+    top: -6px;
+    width: 6px;
+    height: 6px;
+  }
+}
+
+@keyframes eye_2 {
+  0% {
+    top: -6px;
+    width: 6px;
+    height: 6px;
+  }
+
+  10% {
+    transform: translateX(0);
+  }
+
+  12% {
+    transform: translateX(3px);
+  }
+
+  20% {
+    top: -6px;
+    width: 6px;
+    height: 6px;
+  }
+
+  22% {
+    top: -4px;
+    width: 8px;
+    height: 2px;
+  }
+
+  24% {
+    top: -6px;
+    width: 6px;
+    height: 6px;
+  }
+
+  25% {
+    transform: translateX(3px);
+  }
+
+  27% {
+    transform: translateX(0);
+  }
+
+  74% {
+    top: -6px;
+    width: 6px;
+    height: 6px;
+    transform: translateX(0);
+  }
+
+  76% {
+    top: -4px;
+    width: 8px;
+    height: 2px;
+    transform: translateX(3px);
+  }
+
+  78% {
+    top: -6px;
+    width: 6px;
+    height: 6px;
+  }
+
+  80% {
+    top: -4px;
+    width: 8px;
+    height: 2px;
+  }
+
+  82% {
+    top: -6px;
+    width: 6px;
+    height: 6px;
+  }
+
+  85% {
+    transform: translateX(3px);
+  }
+
+  87% {
+    transform: translateX(0);
+  }
+
+  100% {
+    top: -6px;
+    width: 6px;
+    height: 6px;
+    transform: translateX(0);
+  }
+}

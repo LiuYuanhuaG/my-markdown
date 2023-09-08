@@ -1,3 +1,7 @@
 {
-  "extends": "@umijs/lint/dist/config/stylelint"
+  "extends": "@umijs/lint/dist/config/stylelint",
+  "rules": {
+    "selector-class-pattern": null,
+    "scss/dollar-variable-pattern": null
+  }
 }

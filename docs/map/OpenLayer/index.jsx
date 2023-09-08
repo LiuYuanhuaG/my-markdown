@@ -66,8 +66,20 @@ const ModelSampling = () => {
         maxZoom: 20,
       }),
       layers: [
+        //加载天地图矢量瓦片
         new olLayer.Tile({
-          source: new olSource.OSM(),
+          source: new olSource.XYZ({
+            url: 'http://t{0-7}.tianditu.gov.cn/DataServer?T=vec_W&x={x}&y={y}&l={z}&tk=3c1fa5502bab6c274c3557cea72eb9f1',
+          }),
+          name: '天地图矢量',
+        }),
+        //加载天地图标注
+        new olLayer.Tile({
+          source: new olSource.XYZ({
+            url: 'http://t{0-7}.tianditu.gov.cn/DataServer?T=cva_w&x={x}&y={y}&l={z}&tk=3c1fa5502bab6c274c3557cea72eb9f1',
+          }),
+          name: '天地图标注',
+          zIndex: 10,
         }),
       ],
     });

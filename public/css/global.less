@@ -47,3 +47,29 @@ body .dumi-default-doc-layout > main {
 .dumi-default-content .dumi-default-previewer {
   margin-bottom: 70px;
 }
+
+/* stylelint-disable-next-line no-duplicate-selectors */
+#root .dumi-default-doc-layout-mobile-bar + main {
+  background-color: transparent;
+
+  .dumi-default-content {
+    margin-left: 200px;
+  }
+
+  .dumi-default-sidebar {
+    position: fixed;
+    top: 76px;
+    // left: 9px;
+    z-index: 10;
+    width: 184px;
+  }
+}
+
+#root .dumi-default-doc-layout {
+  min-height: 100%;
+  height: auto;
+
+  > main {
+    height: auto;
+  }
+}
