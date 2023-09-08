@@ -1,0 +1,79 @@
+.dumi-default-header-left {
+  padding-right: 10px;
+}
+
+.dumi-default-header .dumi-default-header-content,
+body .dumi-default-doc-layout > main {
+  max-width: calc(100% - 48px);
+  height: calc(100% - 70px);
+  min-width: 1440px;
+}
+
+#root .dumi-default-doc-layout-mobile-bar + main > .dumi-default-content {
+  min-height: 100%;
+  max-width: 100%;
+}
+
+.dumi-default-content {
+  position: relative;
+}
+
+.dumi-default-header {
+  min-width: 1440px;
+  padding-bottom: 20px;
+}
+
+.dumi-default-doc-layout {
+  height: 100%;
+}
+
+#root {
+  height: 100vh;
+}
+
+.dumi-default-content .dumi-default-footer {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  margin: 0 48px;
+  padding: 10px 0;
+}
+
+.markdown {
+  margin-bottom: 100px;
+}
+
+.dumi-default-content .dumi-default-previewer {
+  margin-bottom: 70px;
+}
+
+/* stylelint-disable-next-line no-duplicate-selectors */
+#root .dumi-default-doc-layout-mobile-bar + main {
+  background-color: transparent;
+
+  .dumi-default-content {
+    margin-left: 200px;
+  }
+
+  .dumi-default-sidebar {
+    position: fixed;
+    top: 76px;
+    // left: 9px;
+    z-index: 10;
+    width: 184px;
+  }
+}
+
+#root .dumi-default-doc-layout {
+  min-height: 100%;
+  height: auto;
+
+  > main {
+    height: auto;
+  }
+}
+
+#root .dumi-default-header:not([data-static]) {
+  top: 20px;
+}
