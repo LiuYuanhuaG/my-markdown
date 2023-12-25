@@ -170,6 +170,16 @@ exec：执行shell命令（缩写:x）
 drop：我要丢弃该commit（缩写:d）
 ```
 
+### 查看提交行数
+
+使用 git bush here 打开相应项目 执行以下代码
+
+```
+git log --format='%aN' | sort -u | while read name; do echo -en "$name\t"; git log --author="$name" --pretty=tformat: --numstat | awk '{ add += $1; subs += $2; loc += $1 - $2 } END { printf "added lines: %s, removed lines: %s, total lines: %s\n", add, subs, loc }' -; done
+```
+
+
+
 ## 2. commit 规范
 
 ## Augular 规范
