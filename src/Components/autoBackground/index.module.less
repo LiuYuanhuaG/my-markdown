@@ -3,7 +3,8 @@
   min-height: calc(80vh - 110px);
   position: relative;
   display: grid;
-  grid: repeat(2, auto) / repeat(3, auto);
+  // grid: repeat(2, auto) / repeat(3, auto);
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
   animation: all 0.5s;
   overflow: hidden;
   place-self: center;
@@ -11,7 +12,7 @@
   :global {
     .box {
       padding: 40px;
-      max-width: 400px;
+      // max-width: 400px;
       border-radius: 8px;
       place-self: center;
       transition: all 0.5s;
@@ -20,7 +21,8 @@
     }
 
     .boxSelected {
-      padding: 20px;
+      // padding: 20px;  // 之前使用
+      transform: scale(1.2);
       z-index: 3;
     }
 
@@ -37,15 +39,17 @@
       transition: all 0.5s;
       height: auto;
       width: 100%;
+      cursor: pointer;
     }
   }
 
   .mask {
     position: absolute;
     inset: 0;
-    z-index: -1;
-    // opacity: 0.8;
+    // z-index: -1;
+    opacity: 1;
     pointer-events: none;
-    filter: blur(200px);
+    filter: blur(400px);
+    transition: all 0.5s;
   }
 }

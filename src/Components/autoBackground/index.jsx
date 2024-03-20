@@ -10,6 +10,7 @@ function AutoBackground(imgList) {
   const [query, setQuery] = useState('redux');
   const [selectKey, setSelectKey] = useState();
   const [maskStyle, setMaskStyle] = useState();
+  const [isOver, setIsOver] = useState(true);
   const [backGroundColor, setBackGroundColor] = useState(
     'linear-gradient(to bottom, #fff, #fff)',
   );
@@ -30,9 +31,27 @@ function AutoBackground(imgList) {
       img: xiyang,
       key: 4,
     },
+    {
+      img: cs,
+      key: 11,
+    },
+    {
+      img: shan,
+      key: 22,
+    },
+    {
+      img: xiangcun,
+      key: 33,
+    },
+    {
+      img: xiyang,
+      key: 44,
+    },
   ];
 
   const handleOver = async (e, key) => {
+    if (!isOver) return;
+    setIsOver(false);
     const colorThief = new ColorThief();
     let [color1, color2, color3] = await colorThief.getPalette(e.target, 3);
     setSelectKey(key);
@@ -41,8 +60,9 @@ function AutoBackground(imgList) {
     );
     setMaskStyle({
       backgroundImage: `linear-gradient(to left top , rgba(${color1?.toString()}), rgba(${color2?.toString()}),rgba(${color3?.toString()}))`,
-      zIndex: 2,
+      opacity: 1,
     });
+    setIsOver(true);
   };
 
   const handleLeave = (e) => {
